@@ -8,6 +8,7 @@ body {
   margin: 0 !important;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #fffef8;
 }
 
 a {
@@ -17,4 +18,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px #E6F4F1;
 }
