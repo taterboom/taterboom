@@ -9,6 +9,9 @@ const Index: NextPage = () => {
       <Link href="/projects/props-break" passHref>
         <Button>Props Break</Button>
       </Link>
+      <Link href="/projects/rect-stroke" passHref>
+        <Button>Rect Stroke</Button>
+      </Link>
     </Page>
   )
 }
