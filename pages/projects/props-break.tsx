@@ -7,6 +7,7 @@ const PropsBreak: NextPage = () => {
       width="100%"
       height="100%"
       src="https://props-break.vercel.app/"
+      allow="clipboard-write"
     ></iframe>
   )
 }
