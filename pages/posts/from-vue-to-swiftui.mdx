@@ -1,0 +1,98 @@
+`SwiftUI`是苹果公司推出的现代 UI 框架，可以更加快速地为 App 构建 UI。从前端开发者角度来看，`SwiftUI`跟前端 UI 框架`Vue`有很多相似的地方。以下将以开发一个“TODO-List”应用的方式，从「入口」、「构建 UI」、「更新 UI」、「动画」四个方面展示`SwiftUI`和`Vue`的异同，简单入门`SwiftUI`。
+
+## 入口
+
+**In Vue**
+
+<img src="/assets/posts/from-vue-to-swiftui/0.1.png" alt="0.1.png" width="400" />
+`Vue`通过其提供的`createApp`API 来创建应用，`App`是`根组件`，`组件`（一般由`defineComponent`定义）是构成
+Vue 应用的基本单位。 `mount("#app")`是将应用挂载到 dom 元素上（HTML 文件中相应的`id`为`app`的元素）
+
+**In SwiftUI**
+
+<img src="/assets/posts/from-vue-to-swiftui/0.2.png" alt="0.2.png" width="400" />
+`SwiftUI`的入口`@main`修饰的 App，`ContentView`的一个`View`类型的结构体，`View`是构成 SwiftUI 应用的基本单位。
+
+## 构建 UI
+
+"TODO-List"包含一个输入框和一个“TODO”列表。
+`Vue`和`SwiftUI`都采用“声明式“的方法来构建 UI
+
+**In Vue**
+
+<img src="/assets/posts/from-vue-to-swiftui/1.1.png" alt="1.1.png" width="500" />
+`Vue`通过`defineComponent`来定义组件，图中定义了`App`和`Item`两个组件，`App`组件包含输入框和每条“TODO”的展示，`Item`组件是“TODO”具体视图，Vue
+通过组合组件来构建应用。 `Vue`依赖 HTML 提供的基本视图元素（比如`div`、`button`），并通过`jsx`这样一种`DSL`来编写视图，样式修改则是通过
+CSS 来实现，跟视图的交互也是依赖 HTML 基本元素自身的交互（比如`button`的`click`事件）。
+
+**In SwiftUI**
+
+<img src="/assets/posts/from-vue-to-swiftui/1.2.png" alt="1.2.png" width="500" />
+`SwiftUI`的组件是一个实现了`View`协议的结构体，通过 SwiftUI 提供的一系列基础组件（比如`HStack`、`Text`），可以很方便地编写
+UI。修改组件则是通过一系列被称为`modefier`的方法来实现的，`modefier`比 CSS 更加强大，除了修改样式，还能配置组件，修改组件逻辑，类似
+Vue 中的高阶组件。
+
+## 更新 UI
+
+通过输入框增加“TODO”，通过“X”按钮删除“TODO”
+`Vue`和`SwiftUI`都提供数据变更响应式更新 UI 的能力。
+
+**In Vue**
+
+<img src="/assets/posts/from-vue-to-swiftui/2.1.png" alt="2.1.png" width="500" />
+`Vue`通过其提供的`ref`API 来定义可响应式更新视图的状态，当状态变更时，视图会相应的变更，无需手动更新视图。其中`input`输入框和`inputText`状态的同步用到了
+Vue 的双向绑定特性`v-model`。
+
+**In SwiftUI**
+
+<img src="/assets/posts/from-vue-to-swiftui/2.2.png" alt="2.2.png" width="500" />
+`SwiftUI`通过`@State`这样一种`PropertyWrapper`来修饰属性使其具有响应式更新 UI 的能力。其中`TextField`输入框和`inputText`状态的同步用到了
+SwiftUI 的双向绑定特性`Binding`（`$inputText`）。
+
+关于父子组件通信、孙子组件通信、外部数据源这些数据管理方案，Vue 和 SwiftUI 都有一些相似的解决方案，就不再演示了。
+
+## 动画和生命周期
+
+视觉的变化一般需要有动画来过渡，在每条“TODO”出现时添加过渡动画。
+
+**In Vue**
+
+<img src="/assets/posts/from-vue-to-swiftui/3.1.png" alt="3.1.png" width="500" />
+`Vue`基于 CSS 提供的动画能力，先使用`transition`配置过渡动画的各个参数，再通过状态的变化使 UI 元素的某些属性发生变化从而触发动画，这里使用`onMount`生命周期钩子，在组件挂载时，改变状态`showed`使元素的`transform`属性发生改变，触发位移的过渡动画。
+
+**In SwiftUI**
+
+<img src="/assets/posts/from-vue-to-swiftui/3.2.png" alt="3.2.png" width="500" />
+`SwiftUI`的动画类似，使用`animation`配置过渡动画的各个参数，再通过状态的变化使 UI 元素的某些属性发生变化从而触发动画，`onAppear`则是在元素显示时触发。
+
+`SwiftUI`的动画更加方便和强大，上文介绍的动画声明方式被称为“隐式动画”，除此之外还有“显示动画”。
+
+<img src="/assets/posts/from-vue-to-swiftui/3.3.png" alt="3.3.png" width="500" />
+将状态变化逻辑放在`withAnimation`里，则相应的 UI 动画会自动执行，并且 SwiftUI 还给元素属性的变化设置了默认的过渡动画。
+
+最后的效果图：
+
+<div className="flex justify-center">
+  <div className="flex flex-col items-center">
+    <img
+      src="/assets/posts/from-vue-to-swiftui/vue-result.gif"
+      style={{ width: 220, height: 474 }}
+    />
+    <h6 className="mt-1">Vue</h6>
+  </div>
+  <div className="ml-2 flex flex-col items-center">
+    <img
+      src="/assets/posts/from-vue-to-swiftui/swiftui-result.gif"
+      style={{ width: 220, height: 474 }}
+    />
+    <h6 className="mt-1">SwiftUI</h6>
+  </div>
+</div>
+
+## 总结
+
+<img src="/assets/posts/from-vue-to-swiftui/comparation.png" width="1000" />
+
+`Vue`和`SwiftUI`在构建 UI、状态管理等方面有很多相似之处。
+`SwiftUI`在语言本身、动画等方面具有更加优秀的表现，尤其在样式编写方面，modefier 比 CSS 丝滑和强大很多。
+但是 `Vue composition API` / `react hooks API` 对 efftecs 的隔离复用、对逻辑的组合，暂时没有看到 SwiftUI 有相应良好的解决方案。

@@ -12,6 +12,9 @@ const Index: NextPage = () => {
       <Link href="/projects/rect-stroke" passHref>
         <Button>Rect Stroke</Button>
       </Link>
+      <Link href="https://daidai.taterbomb.top/" passHref>
+        <Button>DaiDai</Button>
+      </Link>
     </Page>
   )
 }

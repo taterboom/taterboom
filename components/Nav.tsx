@@ -4,7 +4,7 @@ import Button from "./Button"
 const Nav = () => {
   return (
     <nav>
-      <Link href="blog" passHref>
+      <Link href="posts" passHref>
         <Button>Blog</Button>
       </Link>
       <Link href="projects" passHref>
