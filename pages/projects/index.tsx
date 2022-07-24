@@ -15,6 +15,9 @@ const Index: NextPage = () => {
       <Link href="https://daidai.taterbomb.top/" passHref>
         <Button>DaiDai</Button>
       </Link>
+      <Link href="https://www.rrcrop.cyou" passHref>
+        <Button>RRCROP</Button>
+      </Link>
     </Page>
   )
 }
