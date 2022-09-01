@@ -5,15 +5,18 @@ import {
   CanvasExample,
 } from "../../components/PostAssets/border-radius-in-canvas"
 
-// # 如何在 Canvas 中画出圆角
+# 如何在 Canvas 中画出圆角
 
 ## QuadraticCurve
 
-<Playground scope={{ roundRectByQuadraticCurve, CanvasExample }}>
+<Playground
+  className="sm:!grid-cols-[1fr_332px]"
+  scope={{ roundRectByQuadraticCurve, CanvasExample }}
+>
   {`() => {
     const rectSize = 300
     const borderSize = 4
-    const borderRidus = 100 // set 150 to check circle
+    const borderRidus = 100 // set 150 to check the circle shape
     const color = 'rgba(255, 0, 0, 0.6)'
     const canvasRef = React.useRef(null)
     React.useEffect(() => {
@@ -37,11 +40,11 @@ import {
 
 ## Arc
 
-<Playground className="grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
+<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
   {`() => {
     const rectSize = 300
     const borderSize = 4
-    const borderRidus = 100 // set 150 to check circle
+    const borderRidus = 100 // set 150 to check the circle shape
     const color = 'rgba(255, 0, 0, 0.6)'
     const canvasRef = React.useRef(null)
     React.useEffect(() => {

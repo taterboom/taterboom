@@ -1,5 +1,5 @@
 module.exports = {
-  footer: <p>MIT 2021 © Nextra.</p>,
+  footer: <footer>@taterbomb</footer>,
   head: ({ title, meta }) => (
     <>
       {title && <title>{title}</title>}

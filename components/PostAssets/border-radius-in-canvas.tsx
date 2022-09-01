@@ -39,7 +39,7 @@ export function roundRectByQuadraticCurve(
 }
 
 const Tips = ({ cssColor, canvasColor, value, onChange }: any) => (
-  <div className="flex absolute -bottom-12 right-0 gap-4">
+  <div className="flex absolute -bottom-1 right-12 gap-4">
     <button
       className="flex gap-2 items-center !outline-none"
       style={{ opacity: (value & 0b10) === 0b10 ? 1 : 0.5 }}
@@ -64,7 +64,10 @@ export const CanvasExample = forwardRef<HTMLCanvasElement, any>(
   ({ rectSize, borderRidus, borderSize, color }, ref) => {
     const [visible, setVisible] = useState(0b11)
     return (
-      <div style={{ position: "relative", zIndex: 1, width: rectSize, height: rectSize }}>
+      <div
+        className="mx-auto pb-8 box-content"
+        style={{ position: "relative", zIndex: 1, width: rectSize, height: rectSize }}
+      >
         <div
           style={{
             position: "absolute",

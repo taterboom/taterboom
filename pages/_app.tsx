@@ -14,7 +14,6 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
-  console.log(router.pathname)
   if (Component.custom) {
     return <Component {...pageProps} />
   }
