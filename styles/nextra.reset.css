@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+    .md\:prose {
+        max-width: 128ch !important;
+    }
+}

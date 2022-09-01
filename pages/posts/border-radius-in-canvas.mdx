@@ -1,0 +1,64 @@
+import Playground from "../../components/Playground"
+import {
+  roundRectByArc,
+  roundRectByQuadraticCurve,
+  CanvasExample,
+} from "../../components/PostAssets/border-radius-in-canvas"
+
+// # 如何在 Canvas 中画出圆角
+
+## QuadraticCurve
+
+<Playground scope={{ roundRectByQuadraticCurve, CanvasExample }}>
+  {`() => {
+    const rectSize = 300
+    const borderSize = 4
+    const borderRidus = 100 // set 150 to check circle
+    const color = 'rgba(255, 0, 0, 0.6)'
+    const canvasRef = React.useRef(null)
+    React.useEffect(() => {
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext("2d")
+        ctx.strokeStyle = color
+        ctx.lineWidth = borderSize
+        roundRectByQuadraticCurve(
+            ctx,
+            borderSize / 2,
+            borderSize / 2,
+            rectSize - borderSize,
+            rectSize - borderSize,
+            borderRidus,
+        )
+        ctx.stroke()
+    }, [])
+    return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
+}`}
+</Playground>
+
+## Arc
+
+<Playground className="grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
+  {`() => {
+    const rectSize = 300
+    const borderSize = 4
+    const borderRidus = 100 // set 150 to check circle
+    const color = 'rgba(255, 0, 0, 0.6)'
+    const canvasRef = React.useRef(null)
+    React.useEffect(() => {
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext("2d")
+        ctx.strokeStyle = color
+        ctx.lineWidth = borderSize
+        roundRectByArc(
+            ctx,
+            borderSize / 2,
+            borderSize / 2,
+            rectSize - borderSize,
+            rectSize - borderSize,
+            borderRidus,
+        )
+        ctx.stroke()
+    }, [])
+    return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
+}`}
+</Playground>

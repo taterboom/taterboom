@@ -1,15 +1,15 @@
 import { NextPage } from "next"
 import Link from "next/link"
 import Button from "../../components/Button"
-import Page from "../../components/Page"
+import type { CommonPage } from "../_app"
 
-const Index: NextPage = () => {
+const Index: CommonPage = () => {
   return (
-    <Page>
+    <>
       <Link href="/posts/from-vue-to-swiftui" passHref>
         <Button>From Vue to SwiftUI</Button>
       </Link>
-    </Page>
+    </>
   )
 }
 
