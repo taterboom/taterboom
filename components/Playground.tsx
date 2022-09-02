@@ -1,15 +1,35 @@
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
+import {
+  LiveProvider,
+  LiveEditor,
+  LiveError,
+  LivePreview,
+  LiveEditorProps,
+  withLive,
+} from "react-live"
 import clsx from "classnames"
+import { omit } from "lodash"
+import { MaterialSymbolsContentCopy } from "./Icons"
+import Button, { CopyButton } from "./Button"
 
-type CodeEditorProps = {
-  children?: React.ReactNode
-  className?: string
+type CodeEditorProps = LiveEditorProps & {
+  dsiableCopy?: boolean
+  editorClassName?: string
 }
 
-// TODO copy
-const CodeEditor = (props: CodeEditorProps) => {
-  return <LiveEditor className={props.className}></LiveEditor>
-}
+export const CodeEditor = withLive<CodeEditorProps>((props) => {
+  // @ts-ignore
+  const code = props.live.code
+  return (
+    <div className={clsx(props.className, "relative")}>
+      {/* @ts-ignore */}
+      <LiveEditor
+        {...omit(props, "className", "live")}
+        className={props.editorClassName}
+      ></LiveEditor>
+      <CopyButton className="absolute right-2 top-1" text={code}></CopyButton>
+    </div>
+  )
+})
 
 type PlaygroundProps = {
   children: string

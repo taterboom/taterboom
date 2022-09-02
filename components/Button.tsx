@@ -1,28 +1,63 @@
-import { useMemo } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
+import clsx from "classnames"
+import { useManualTimeout } from "./hooks/useManualTimeout"
+import { ClaritySuccessLine, MaterialSymbolsContentCopy } from "./Icons"
 
-type ButtonProps = {
+type ButtonProps = Omit<
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+  "type"
+> & {
   type?: "text" | "rounded"
   href?: string
 }
 
-const Button: React.FC<ButtonProps> = ({ type = "text", href, children }) => {
-  const className = useMemo(() => {
-    const baseClassName =
+const Button = ({ type = "text", href, className, children, ...restProps }: ButtonProps) => {
+  const btnClassName = useMemo(() => {
+    let _className =
       "inline-block rounded mx-2 py-1 cursor-pointer hover:bg-button/30 active:bg-button"
     if (type === "text") {
-      return baseClassName + " px-3"
+      _className += " px-3"
     } else {
-      return baseClassName + " p-2 rounded-full"
+      _className += " p-2 rounded-full"
     }
-  }, [type])
+    return clsx(_className, className)
+  }, [type, className])
   if (href) {
     return (
-      <a className={className} href={href}>
+      <a className={btnClassName} href={href}>
         {children}
       </a>
     )
   }
-  return <div className={className}>{children}</div>
+  return (
+    <button className={btnClassName} {...restProps}>
+      {children}
+    </button>
+  )
+}
+
+export const CopyButton = (props: ButtonProps & { text?: string }) => {
+  const [showSuccess, setShowSuccess] = useState(false)
+
+  const start = useManualTimeout(() => {
+    setShowSuccess(false)
+  }, 2000)
+
+  return (
+    <Button
+      className={props.className}
+      onClick={(e) => {
+        console.log(props.text)
+        if (!props.text) return
+        navigator.clipboard.writeText(props.text)
+        props.onClick?.(e)
+        setShowSuccess(true)
+        start()
+      }}
+    >
+      {showSuccess ? <ClaritySuccessLine /> : <MaterialSymbolsContentCopy />}
+    </Button>
+  )
 }
 
 export default Button

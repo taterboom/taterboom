@@ -1,4 +1,4 @@
-import Playground from "../../components/Playground"
+import Playground, { CodeEditor } from "../../components/Playground"
 import {
   roundRectByArc,
   roundRectByQuadraticCurve,
@@ -7,7 +7,30 @@ import {
 
 # 如何在 Canvas 中画出圆角
 
-## QuadraticCurve
+## QuadraticCurve 二次贝塞尔曲线
+
+<CodeEditor
+  code={`function roundRectByQuadraticCurve(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number = 0
+) {
+  ctx.beginPath()
+  ctx.moveTo(x + radius, y)
+  ctx.lineTo(x + width - radius, y)
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius)
+  ctx.lineTo(x + width, y + height - radius)
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height)
+  ctx.lineTo(x + radius, y + height)
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius)
+  ctx.lineTo(x, y + radius)
+  ctx.quadraticCurveTo(x, y, x + radius, y)
+  ctx.closePath()
+}`}
+/>
 
 <Playground
   className="sm:!grid-cols-[1fr_332px]"
@@ -38,7 +61,26 @@ import {
 }`}
 </Playground>
 
-## Arc
+## Arc 圆弧
+
+<CodeEditor
+  code={`function roundRectByArc(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number = 0
+) {
+  ctx.beginPath()
+  ctx.moveTo(x + radius, y)
+  ctx.arcTo(x + width, y, x + width, y + height, radius)
+  ctx.arcTo(x + width, y + height, x, y + height, radius)
+  ctx.arcTo(x, y + height, x, y, radius)
+  ctx.arcTo(x, y, x + width, y, radius)
+  ctx.closePath()
+}`}
+/>
 
 <Playground className="sm:!grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
   {`() => {
