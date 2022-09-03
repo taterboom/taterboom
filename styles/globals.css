@@ -23,3 +23,7 @@ a {
 .text-shadow {
   text-shadow: 2px 2px #E6F4F1;
 }
+
+.logo-gradient  {
+  background-image: linear-gradient(to right, #01a8df, #01acda 2%, #02bcc7 12%, #03c5bc 23%, #03c8b8 34%, #00a3e5);
+}

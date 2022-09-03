@@ -1,0 +1,131 @@
+---
+title: RoundedRectangle in Canvas
+keywords: RoundedRectangle, border-radius, canvas
+description: We use fillRect to draw a Rectangle in canvas, but fillRect doesn't support rounded corners. How can we draw a RoundedRectangle in canvas just like the `border-radius` in CSS.
+---
+
+import Playground, { CodeEditor } from "../../components/Playground"
+import {
+  roundRectByArc,
+  roundRectByQuadraticCurve,
+  CanvasExample,
+} from "../../components/PostAssets/border-radius-in-canvas"
+
+# How to draw a RoundedRectangle in Canvas
+
+We use `fillRect` to draw a Rectangle in canvas, but `fillRect` doesn't support rounded corners. How can we draw a RoundedRectangle in canvas just like the `border-radius` in CSS.
+
+## QuadraticCurve
+
+Use `quadraticCurveTo` to draw rounded corner line.
+
+<CodeEditor
+  language="typescript"
+  code={`function roundRectByQuadraticCurve(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number = 0
+) {
+  ctx.beginPath()
+  ctx.moveTo(x + radius, y)
+  ctx.lineTo(x + width - radius, y)
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius)
+  ctx.lineTo(x + width, y + height - radius)
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height)
+  ctx.lineTo(x + radius, y + height)
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius)
+  ctx.lineTo(x, y + radius)
+  ctx.quadraticCurveTo(x, y, x + radius, y)
+  ctx.closePath()
+}`}
+/>
+
+You can play with the example.
+
+<Playground
+  className="sm:!grid-cols-[1fr_332px]"
+  scope={{ roundRectByQuadraticCurve, CanvasExample }}
+>
+  {`() => {
+    const rectSize = 300
+    const borderSize = 4
+    const borderRidus = 100 // set 150 to check the circle shape
+    const color = 'rgba(255, 0, 0, 0.6)'
+    const canvasRef = React.useRef(null)
+    React.useEffect(() => {
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext("2d")
+        ctx.strokeStyle = color
+        ctx.lineWidth = borderSize
+        roundRectByQuadraticCurve(
+            ctx,
+            borderSize / 2,
+            borderSize / 2,
+            rectSize - borderSize,
+            rectSize - borderSize,
+            borderRidus,
+        )
+        ctx.stroke()
+    }, [])
+    return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
+}`}
+</Playground>
+
+## Arc
+
+Use `arcTo` to draw rounded corner line.
+
+<CodeEditor
+  code={`function roundRectByArc(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number = 0
+) {
+  ctx.beginPath()
+  ctx.moveTo(x + radius, y)
+  ctx.arcTo(x + width, y, x + width, y + height, radius)
+  ctx.arcTo(x + width, y + height, x, y + height, radius)
+  ctx.arcTo(x, y + height, x, y, radius)
+  ctx.arcTo(x, y, x + width, y, radius)
+  ctx.closePath()
+}`}
+/>
+
+You can play with the example.
+
+<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
+  {`() => {
+    const rectSize = 300
+    const borderSize = 4
+    const borderRidus = 100 // set 150 to check the circle shape
+    const color = 'rgba(255, 0, 0, 0.6)'
+    const canvasRef = React.useRef(null)
+    React.useEffect(() => {
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext("2d")
+        ctx.strokeStyle = color
+        ctx.lineWidth = borderSize
+        roundRectByArc(
+            ctx,
+            borderSize / 2,
+            borderSize / 2,
+            rectSize - borderSize,
+            rectSize - borderSize,
+            borderRidus,
+        )
+        ctx.stroke()
+    }, [])
+    return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
+}`}
+</Playground>
+
+## Conclusion
+
+Arc(the arcTo function) is better than QuadraticCurve in canvas border-radius implement. <br />
+You can use the function to crop images in RoundedRectangle shape, and this is what the [RRcrop](https://www.rrcrop.cyou/) doing.

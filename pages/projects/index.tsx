@@ -2,10 +2,11 @@ import { NextPage } from "next"
 import Link from "next/link"
 import Button from "../../components/Button"
 import Page from "../../components/Page"
+import type { CommonPage } from "../_app"
 
-const Index: NextPage = () => {
+const Index: CommonPage = () => {
   return (
-    <Page>
+    <>
       <Link href="/projects/props-break" passHref>
         <Button>Props Break</Button>
       </Link>
@@ -21,7 +22,7 @@ const Index: NextPage = () => {
       <Link href="https://etsap.vercel.app" passHref>
         <Button>ETSAP</Button>
       </Link>
-    </Page>
+    </>
   )
 }
 

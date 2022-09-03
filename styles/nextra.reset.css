@@ -1,0 +1,8 @@
+@media (min-width: 768px) {
+    .md\:prose {
+        max-width: 128ch !important;
+    }
+}
+article {
+    padding-top: 0!important;
+}

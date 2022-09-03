@@ -4,10 +4,10 @@ import Button from "./Button"
 const Nav = () => {
   return (
     <nav>
-      <Link href="posts" passHref>
+      <Link href="/posts" passHref>
         <Button>Blog</Button>
       </Link>
-      <Link href="projects" passHref>
+      <Link href="/projects" passHref>
         <Button>Projects</Button>
       </Link>
     </nav>

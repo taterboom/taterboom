@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const Logo: React.FC<{ width: number; height: number }> = ({ width, height }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" width={width} height={height}>
     <defs>
@@ -36,7 +38,6 @@ const Logo: React.FC<{ width: number; height: number }> = ({ width, height }) =>
         }
       </style>
     </defs>
-    <title>{"\u732B\u5934"}</title>
     <path
       d="M116.11 66.21c0-.13-.06-.26-.1-.4l-10.2-33A7.59 7.59 0 0 0 93 29.85l-9.16 9.88A40.52 40.52 0 0 0 78 39.3H65.55a41.28 41.28 0 0 0-5.81.42l-8.93-9.63A7.6 7.6 0 0 0 38 33l-9.26 29.94a40.26 40.26 0 0 0-3.68 16.85A33.25 33.25 0 0 0 58.31 113H85.2a33.25 33.25 0 0 0 33.25-33.25 40.49 40.49 0 0 0-2.34-13.54Z"
       style={{
@@ -106,5 +107,16 @@ const Logo: React.FC<{ width: number; height: number }> = ({ width, height }) =>
     />
   </svg>
 )
+
+export const LogoWithTextAnchor = () => {
+  return (
+    <Link href="/">
+      <a className="!no-underline flex items-center gap-1 text-sm">
+        <Logo width={22} height={22} />
+        <span className="logo-gradient bg-clip-text text-transparent">@taterbomb</span>
+      </a>
+    </Link>
+  )
+}
 
 export default Logo
