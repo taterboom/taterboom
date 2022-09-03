@@ -29,7 +29,7 @@ export const CodeEditor = withLive<CodeEditorProps>((props) => {
         {...omit(props, "className", "live")}
         className={props.editorClassName}
       ></LiveEditor>
-      <CopyButton className="absolute right-2 top-1" text={code}></CopyButton>
+      <CopyButton className="absolute right-0 top-1" type="rounded" text={code}></CopyButton>
     </div>
   )
 })
