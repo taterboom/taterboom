@@ -9,8 +9,8 @@ const Index: CommonPage = () => {
       <Link href="/posts/from-vue-to-swiftui" passHref>
         <Button>From Vue to SwiftUI</Button>
       </Link>
-      <Link href="/posts/border-radius-in-canvas" passHref>
-        <Button>Border Radius in Canvas</Button>
+      <Link href="/posts/rounded-rectangle-in-canvas" passHref>
+        <Button>Rounded Rectangle in Canvas</Button>
       </Link>
     </>
   )

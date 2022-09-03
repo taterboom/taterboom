@@ -1,3 +1,9 @@
+---
+title: RoundedRectangle in Canvas
+keywords: RoundedRectangle, border-radius, canvas
+description: We use fillRect to draw a Rectangle in canvas, but fillRect doesn't support rounded corners. How can we draw a RoundedRectangle in canvas just like the `border-radius` in CSS.
+---
+
 import Playground, { CodeEditor } from "../../components/Playground"
 import {
   roundRectByArc,
@@ -5,11 +11,16 @@ import {
   CanvasExample,
 } from "../../components/PostAssets/border-radius-in-canvas"
 
-# 如何在 Canvas 中画出圆角
+# How to draw a RoundedRectangle in Canvas
 
-## QuadraticCurve 二次贝塞尔曲线
+We use `fillRect` to draw a Rectangle in canvas, but `fillRect` doesn't support rounded corners. How can we draw a RoundedRectangle in canvas just like the `border-radius` in CSS.
+
+## QuadraticCurve
+
+Use `quadraticCurveTo` to draw rounded corner line.
 
 <CodeEditor
+  language="typescript"
   code={`function roundRectByQuadraticCurve(
   ctx: CanvasRenderingContext2D,
   x: number,
@@ -31,6 +42,8 @@ import {
   ctx.closePath()
 }`}
 />
+
+You can play with the example.
 
 <Playground
   className="sm:!grid-cols-[1fr_332px]"
@@ -61,7 +74,9 @@ import {
 }`}
 </Playground>
 
-## Arc 圆弧
+## Arc
+
+Use `arcTo` to draw rounded corner line.
 
 <CodeEditor
   code={`function roundRectByArc(
@@ -81,6 +96,8 @@ import {
   ctx.closePath()
 }`}
 />
+
+You can play with the example.
 
 <Playground className="sm:!grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
   {`() => {
@@ -107,3 +124,8 @@ import {
     return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
 }`}
 </Playground>
+
+## Conclusion
+
+Arc(the arcTo function) is better than QuadraticCurve in canvas border-radius implement. <br />
+You can use the function to crop images in RoundedRectangle shape, and this is what the [RRcrop](https://www.rrcrop.cyou/) doing.
