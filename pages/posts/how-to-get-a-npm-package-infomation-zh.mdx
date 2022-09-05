@@ -1,0 +1,64 @@
+---
+title: How to get the infomation about an npm package
+---
+
+import Language from "../../components/PostHelpers/Language"
+
+# 如何获取一个 npm 包的信息
+
+<Language path="./how-to-get-a-npm-package-infomation" type="en" />
+
+我们当然可以通过访问[npm 官网](https://www.npmjs.com)来查询一个包的信息，但是这种方式有一些缺陷：
+
+- 需要在浏览器中打开一个 tab 再进行查询
+- 查看 Dependency 需要再点击一下“Dependency”导航栏
+- Dependency 只显示包名，没有其他信息
+- 没有 Github 的 star 数
+- …
+
+通过类似 API 的方式聚合 Dependency、github 信息，可以更加方便地查阅一个包的信息。
+
+## Npm registry api
+
+[npm official api](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md) 支持[跨域](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)。
+
+举个例子，查询`next`最新版本的信息，请求的 URL 是https://registry.npmjs.org/next/latest 返回的结果（精简版）：
+
+```json
+{
+  "name": "next",
+  "version": "12.2.5",
+  "description": "The React Framework",
+  "repository": { "type": "git", "url": "git+https://github.com/vercel/next.js.git" },
+  "homepage": "https://nextjs.org",
+  "dependencies": { "@next/env": "12.2.5", "@swc/helpers": "0.4.3" }
+}
+```
+
+可以从中获取版本、仓库地址、依赖、维护者等信息。
+
+## Github api
+
+查询 github 相关信息可以通过其官方 api
+
+- [restful](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api)
+- [graphql](https://docs.github.com/en/graphql)
+
+Github api 都不支持[跨域](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)，并且有请求次数限制，未授权 github 账号的情况下，`restful`每小时只有 60 次请求，而`graphql`则必须登录使用。
+
+## 抓取 Github 页面
+
+通过像网络爬虫一样直接获取 Github 页面，从页面文本中获取数据，此种方法不支持[跨域](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)。
+
+举个例子，获取`next`的 git 仓库页面`https://github.com/vercel/next.js`，通过[DOMParser](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser)(in browse)或者[jsdom](https://www.npmjs.com/package/jsdom)(in nodejs)来解析出想要的信息。 比如`#repo-stars-counter-star`元素的文本内容就是该仓库的 star 数。
+
+## PDJ
+
+PDJ 是一个聚合了一个 npm 包信息的工具，它对信息做了提取，只显示一个包的基本信息：
+
+- 介绍
+- npm 周下载量
+- github star 数
+- Denpendency 列表，包含每个依赖包的介绍
+
+PDJ 有一个[网页 App](https://package.json.taterbomb.top/))，也有一个 Chrome 扩展，Chrome 扩展支持在 github 页面上查阅 package.json 屏显示以上提到的信息。
