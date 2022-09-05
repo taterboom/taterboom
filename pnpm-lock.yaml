@@ -8,6 +8,7 @@ specifiers:
   classnames: ^2.3.1
   eslint: 8.11.0
   eslint-config-next: 12.1.0
+  gsap: ^3.11.1
   lodash: ^4.17.21
   next: 12.2.5
   nextra: ^1.1.0
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   classnames: 2.3.1
+  gsap: 3.11.1
   lodash: 4.17.21
   next: 12.2.5_sfoxds7t5ydpegc3knd667wn6m
   nextra: 1.1.0_react@17.0.2
@@ -41,7 +43,7 @@ devDependencies:
   eslint: 8.11.0
   eslint-config-next: 12.1.0_ppvpuid43zacomnv2hhcqyxhpq
   postcss: 8.4.16
-  tailwindcss: 3.1.8
+  tailwindcss: 3.1.8_postcss@8.4.16
   typescript: 4.6.2
 
 packages:
@@ -285,7 +287,7 @@ packages:
     peerDependencies:
       tailwindcss: ^1.5.0
     dependencies:
-      tailwindcss: 3.1.8
+      tailwindcss: 3.1.8_postcss@8.4.16
     dev: false
 
   /@types/acorn/4.0.6:
@@ -1818,6 +1820,10 @@ packages:
       kind-of: 6.0.3
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
+    dev: false
+
+  /gsap/3.11.1:
+    resolution: {integrity: sha512-UKuJ0UPhntFHMwT6URFQ4cTQv88xc7Kd9Dhxt7qX9IPhC+d+/a5wKW5E5Vn33hZ53nBI1JfApcEbzKgXkcuPZw==}
     dev: false
 
   /has-bigints/1.0.2:
@@ -3961,10 +3967,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /tailwindcss/3.1.8:
+  /tailwindcss/3.1.8_postcss@8.4.16:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -4176,6 +4184,7 @@ packages:
   /unified/9.2.2:
     resolution: {integrity: sha512-Sg7j110mtefBD+qunSLO1lqOEKdrwBFBrR6Qd8f4uwkhWNlbkaqwHse6e7QvD3AP/MNoJdEDLaf8OxYyoWgorQ==}
     dependencies:
+      '@types/unist': 2.0.6
       bail: 1.0.5
       extend: 3.0.2
       is-buffer: 2.0.5
