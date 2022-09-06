@@ -1,0 +1,71 @@
+---
+title: How to get the information about an npm package
+---
+
+import Language from "../../components/PostHelpers/Language"
+
+# How to get the information about an npm package
+
+<Language type="zh" path="./how-to-get-a-npm-package-information" />
+
+We can certainly look up information about a package by visiting the [npm official website](https://www.npmjs.com/),
+but this approach has some drawbacks.
+
+- You need to open a tab in the browser to look up the package
+- You need to click on the "Dependency" navigation bar to view the Dependency
+- Dependency only shows package name, no other information
+- No Github star number
+- ...
+
+It is easier to check the information of a package by aggregating Dependency and github information in an API-like way,
+
+## Npm registry api
+
+[Npm official api](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md) support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+For example, Fetching `next` package information with the URL https://registry.npmjs.org/next/latest, and this is the simple result
+
+```json
+{
+  "name": "next",
+  "version": "12.2.5",
+  "description": "The React Framework",
+  "repository": { "type": "git", "url": "git+https://github.com/vercel/next.js.git" },
+  "homepage": "https://nextjs.org",
+  "dependencies": { "@next/env": "12.2.5", "@swc/helpers": "0.4.3" }
+}
+```
+
+We can get the version, repository address, dependencies and other information from this simple result.
+
+## Github api
+
+You can fetch github information through its official api.
+
+- [restful](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api)
+- [graphql](https://docs.github.com/en/graphql)
+
+Github api doesn’t support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and there is a rate limit. Restful only has 60 requests per hour without the github authorization. Graphql must be logged in to use.
+
+## Fetch Github Document
+
+Getting information by fetching Github document like a web crawler.
+
+This method does not support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+
+For example:
+
+First, get the git repository document for nextjs by the url `https://github.com/vercel/next.js.`
+
+Second, parse out document result via [DOMParser](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser)(in browse) or [jsdom](https://www.npmjs.com/package/jsdom)(in nodejs), and then get data from dom element . For example, the text content of the `#repo-stars-counter-star` element is the stars count of the repository.
+
+## PDJ
+
+PDJ is a tool that aggregates information about an npm package, it extracts the information and displays only the basic information about a package:.
+
+- Introduction
+- npm weekly downloads
+- github star count
+- Denpendency list, including the description of each dependent package
+
+PDJ has a [Web App](https://package.json.taterbomb.top/) and also a [Chrome extension](https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj). The Chrome extension supports checking the package.json on a github page to display the above mentioned information.

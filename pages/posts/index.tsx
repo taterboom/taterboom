@@ -12,6 +12,9 @@ const Index: CommonPage = () => {
       <Link href="/posts/rounded-rectangle-in-canvas" passHref>
         <Button>Rounded Rectangle in Canvas</Button>
       </Link>
+      <Link href="/posts/how-to-get-a-npm-package-information" passHref>
+        <Button>How to get the information about an npm package</Button>
+      </Link>
     </>
   )
 }
