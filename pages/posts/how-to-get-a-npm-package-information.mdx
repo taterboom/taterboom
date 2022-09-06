@@ -1,12 +1,12 @@
 ---
-title: How to get the infomation about an npm package
+title: How to get the information about an npm package
 ---
 
 import Language from "../../components/PostHelpers/Language"
 
-# How to get the infomation about an npm package
+# How to get the information about an npm package
 
-<Language type="zh" path="./how-to-get-a-npm-package-infomation" />
+<Language type="zh" path="./how-to-get-a-npm-package-information" />
 
 We can certainly look up information about a package by visiting the [npm official website](https://www.npmjs.com/),
 but this approach has some drawbacks.
@@ -21,9 +21,9 @@ It is easier to check the information of a package by aggregating Dependency and
 
 ## Npm registry api
 
-[Npm official api](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md) support **[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)**
+[Npm official api](https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md) support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
-For example, Fetching `next` package infomation with the URL https://registry.npmjs.org/next/latest, and this is the simple result
+For example, Fetching `next` package information with the URL https://registry.npmjs.org/next/latest, and this is the simple result
 
 ```json
 {
@@ -45,13 +45,13 @@ You can fetch github information through its official api.
 - [restful](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api)
 - [graphql](https://docs.github.com/en/graphql)
 
-Github api doesn’t support **[CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and there is a rate limit. Restful only has 60 requests per hour without the github authorization. Graphql must be logged in to use.**
+Github api doesn’t support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and there is a rate limit. Restful only has 60 requests per hour without the github authorization. Graphql must be logged in to use.
 
 ## Fetch Github Document
 
-Getting infomation by fetching Github document like a web crawler.
+Getting information by fetching Github document like a web crawler.
 
-This method does not support [cross-domain](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+This method does not support [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 For example:
 
@@ -68,4 +68,4 @@ PDJ is a tool that aggregates information about an npm package, it extracts the 
 - github star count
 - Denpendency list, including the description of each dependent package
 
-PDJ has a [Web App](https://package.json.taterbomb.top/)) and also a Chrome extension. The Chrome extension supports checking the package.json on a github page to display the above mentioned information.
+PDJ has a [Web App](https://package.json.taterbomb.top/) and also a [Chrome extension](https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj). The Chrome extension supports checking the package.json on a github page to display the above mentioned information.
