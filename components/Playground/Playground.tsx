@@ -8,10 +8,10 @@ import {
 } from "react-live"
 import clsx from "classnames"
 import { omit } from "lodash"
-import Button, { CopyButton } from "./Button"
+import { CopyButton } from "../Button"
 import { Language } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/palenight"
-import { useEffect, useCallback, useLayoutEffect, useMemo, useRef, useReducer } from "React"
+import { DEFAULT_SCOPES } from "./scopes"
 
 type CodeEditorProps = LiveEditorProps & {
   dsiableCopy?: boolean
@@ -34,15 +34,6 @@ export const CodeEditor = withLive<CodeEditorProps>((props) => {
     </div>
   )
 })
-
-const DEFAULT_SCOPES = {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useCallback,
-  useRef,
-  useReducer,
-}
 
 type PlaygroundProps = {
   children: string
