@@ -1,39 +1,9 @@
-import {
-  LiveProvider,
-  LiveEditor,
-  LiveError,
-  LivePreview,
-  LiveEditorProps,
-  withLive,
-} from "react-live"
+import { LiveProvider, LiveError, LivePreview } from "react-live"
 import clsx from "classnames"
-import { omit } from "lodash"
-import { CopyButton } from "../Button"
 import { Language } from "prism-react-renderer"
 import theme from "prism-react-renderer/themes/palenight"
 import { DEFAULT_SCOPES } from "./scopes"
-
-type CodeEditorProps = LiveEditorProps & {
-  dsiableCopy?: boolean
-  editorClassName?: string
-}
-
-export const CodeEditor = withLive<CodeEditorProps>((props) => {
-  // @ts-ignore
-  const code = props.code || props.live?.code
-
-  return (
-    <div className={clsx(props.className, "relative")}>
-      {/* @ts-ignore */}
-      <LiveEditor
-        theme={theme}
-        {...omit(props, "className", "live")}
-        className={props.editorClassName}
-      ></LiveEditor>
-      <CopyButton className="absolute right-0 top-1" type="rounded" text={code}></CopyButton>
-    </div>
-  )
-})
+import { CodeEditor } from "./CodeEditor"
 
 type PlaygroundProps = {
   children: string
