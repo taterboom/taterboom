@@ -1,7 +1,9 @@
 import Link from "next/link"
 
-const Logo: React.FC<{ width: number; height: number }> = ({ width, height }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" width={width} height={height}>
+type LogoProps = JSX.IntrinsicElements["svg"]
+
+const Logo = (props: LogoProps) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" {...props}>
     <defs>
       <clipPath id="clip-path">
         <path

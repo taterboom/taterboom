@@ -1,0 +1,74 @@
+---
+title: svg filter effects examples
+---
+
+import Playground from "../../components/Playground"
+import gsap from "gsap"
+
+# SVG Filter Effects Examples
+
+## Turbulence
+
+<Playground scope={{ gsap }} className="sm:!grid-cols-[1fr_332px]">
+  {`() => {
+
+    useEffect(() => {
+        const feTurbulence = document.querySelector('#turbulence > feTurbulence')
+        const feDisplacementMap = document.querySelector('#turbulence > feDisplacementMap')
+        const progress = { current: 0 }
+        gsap.to(progress, {
+            current: 1,
+            duration: 3,
+            yoyo: true,
+            ease: 'none',
+            repeat: -1,
+            onUpdate() {
+                feTurbulence.setAttribute('baseFrequency', 0.005 + progress.current / 200)
+            }
+        })
+    }, [])
+
+    return <div style={{width: 300, height: 200, overflow: 'hidden'}}>
+        <svg style={{display: 'none'}}>
+            <filter id="turbulence">
+                <feTurbulence result="fe-turbulence" baseFrequency="0.02" numOctaves="2" />
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" result="fe-displacement-map" scale="16" in="SourceGraphic"/>
+            </filter>
+        </svg>
+        <img src="/fire.webp" alt="" style={{ filter: "url(#turbulence)", margin: -16, maxWidth: 'unset'}} width="332" height="232"/>
+    </div>
+
+}`}
+
+</Playground>
+
+## Gooey
+
+<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ gsap }}>
+  {`() => {
+    useEffect(() => {
+        gsap.to(document.querySelector('#up'), {
+            y: -30,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+        })
+        gsap.to(document.querySelector('#down'), {
+            y: 30,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+        })
+    }, [])
+    return <div style={{ filter: "url(#goo)" }}>
+        <svg style={{display: 'none'}}>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
+            </filter>
+        </svg>
+        <div id="up" style={{ width: 128, height: 128, background: 'red', borderRadius: 999}}></div>
+        <div id="down" style={{ width: 128, height: 128, background: 'green', borderRadius: 999, marginTop: -40}}></div>
+    </div>
+}`}
+</Playground>

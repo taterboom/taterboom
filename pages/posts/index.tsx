@@ -3,18 +3,37 @@ import Link from "next/link"
 import Button from "../../components/Button"
 import type { CommonPage } from "../_app"
 
+const POSTS = [
+  {
+    title: "From Vue to SwiftUI",
+    slug: "/posts/from-vue-to-swiftui",
+  },
+  {
+    title: "Rounded Rectangle in Canvas",
+    slug: "/posts/rounded-rectangle-in-canvas",
+  },
+  {
+    title: "How to get the information about an npm package",
+    slug: "/posts/rounded-rectangle-in-canvas",
+  },
+  {
+    title: "SVG Filter Effects",
+    slug: "/posts/svg-filter-effects",
+  },
+  {
+    title: "SVG Filter Effects Examples",
+    slug: "/posts/svg-filter-effects-examples",
+  },
+]
+
 const Index: CommonPage = () => {
   return (
     <>
-      <Link href="/posts/from-vue-to-swiftui" passHref>
-        <Button>From Vue to SwiftUI</Button>
-      </Link>
-      <Link href="/posts/rounded-rectangle-in-canvas" passHref>
-        <Button>Rounded Rectangle in Canvas</Button>
-      </Link>
-      <Link href="/posts/how-to-get-a-npm-package-information" passHref>
-        <Button>How to get the information about an npm package</Button>
-      </Link>
+      {POSTS.map((post) => (
+        <Link key={post.title} href={post.slug} passHref>
+          <Button>{post.title}</Button>
+        </Link>
+      ))}
     </>
   )
 }
