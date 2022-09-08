@@ -13,6 +13,10 @@ const POSTS = [
     slug: "/posts/rounded-rectangle-in-canvas",
   },
   {
+    title: "How to get the information about an npm package",
+    slug: "/posts/rounded-rectangle-in-canvas",
+  },
+  {
     title: "SVG Filter Effects",
     slug: "/posts/svg-filter-effects",
   },
