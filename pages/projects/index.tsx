@@ -1,28 +1,42 @@
-import { NextPage } from "next"
 import Link from "next/link"
 import Button from "../../components/Button"
-import Page from "../../components/Page"
 import type { CommonPage } from "../_app"
+
+const PROJECTS = [
+  {
+    title: "RRCrop",
+    slug: "https://www.rrcrop.cyou",
+  },
+  {
+    title: "DaiDai",
+    slug: "https://daidai.taterbomb.top/",
+  },
+  {
+    title: "ETSAP",
+    slug: "https://etsap.vercel.app",
+    desc: "paste and copy text, transfer text easily between PC and Mobile",
+  },
+  {
+    title: "Rect Stroke",
+    slug: "/projects/rect-stroke",
+  },
+  {
+    title: "Props Break",
+    slug: "/projects/props-break",
+  },
+]
 
 const Index: CommonPage = () => {
   return (
-    <>
-      <Link href="/projects/props-break" passHref>
-        <Button>Props Break</Button>
-      </Link>
-      <Link href="/projects/rect-stroke" passHref>
-        <Button>Rect Stroke</Button>
-      </Link>
-      <Link href="https://daidai.taterbomb.top/" passHref>
-        <Button>DaiDai</Button>
-      </Link>
-      <Link href="https://www.rrcrop.cyou" passHref>
-        <Button>RRCROP</Button>
-      </Link>
-      <Link href="https://etsap.vercel.app" passHref>
-        <Button>ETSAP</Button>
-      </Link>
-    </>
+    <ul>
+      {PROJECTS.map((item) => (
+        <li key={item.title}>
+          <Link href={item.slug} passHref>
+            <Button>{item.title}</Button>
+          </Link>
+        </li>
+      ))}
+    </ul>
   )
 }
 

@@ -1,17 +1,30 @@
 import Link from "next/link"
-import Logo from "./Logo"
+import Logo from "./Logo/Logo"
 import Nav from "./Nav"
+import clsx from "classnames"
 
-const Page: React.FC = ({ children }: { children?: React.ReactNode }) => {
+type PageProps = {
+  children?: React.ReactNode
+  logo: boolean
+}
+
+const Page = ({ children, logo }: PageProps) => {
   return (
     <>
-      <header className="sticky z-40 top-0 w-full backdrop-blur bg-white/70">
-        <div className="max-w-[1024px] mx-auto h-16 px-2 flex justify-between items-center ">
-          <Link href="/" passHref>
-            <a>
-              <Logo width={48} height={48}></Logo>
-            </a>
-          </Link>
+      <header className="sticky z-40 top-0 w-full backdrop-blur header-bg">
+        <div
+          className={clsx(
+            "max-w-[1024px] mx-auto h-16 px-2 flex items-center ",
+            logo ? "justify-between" : "justify-end"
+          )}
+        >
+          {logo && (
+            <Link href="/" passHref>
+              <a>
+                <Logo width={48} height={48}></Logo>
+              </a>
+            </Link>
+          )}
           <Nav></Nav>
         </div>
       </header>

@@ -28,13 +28,15 @@ const POSTS = [
 
 const Index: CommonPage = () => {
   return (
-    <>
+    <ul className="flex flex-col gap-4">
       {POSTS.map((post) => (
-        <Link key={post.title} href={post.slug} passHref>
-          <Button>{post.title}</Button>
-        </Link>
+        <li key={post.title}>
+          <Link key={post.title} href={post.slug} passHref>
+            <Button>{post.title}</Button>
+          </Link>
+        </li>
       ))}
-    </>
+    </ul>
   )
 }
 
