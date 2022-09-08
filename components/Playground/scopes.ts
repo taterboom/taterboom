@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useLayoutEffect, useMemo, useRef, useReducer } from "React"
+import { useEffect, useCallback, useLayoutEffect, useMemo, useRef, useReducer } from "react"
 import Logo from "../Logo"
 
 export const DEFAULT_SCOPES = {
