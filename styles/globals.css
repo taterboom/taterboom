@@ -17,6 +17,7 @@ body {
 body {
   background-image: url(/bg-light.png);
   background-color: rgba(255, 254, 249, 0.9);
+  background-attachment: fixed;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +28,12 @@ body {
   
   .header-bg {
     background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    background-image: none;
   }
 }
 
