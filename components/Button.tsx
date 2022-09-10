@@ -50,7 +50,6 @@ export const CopyButton = (props: ButtonProps & { text?: string }) => {
       {...omit(props, "text")}
       className={clsx(props.className, " text-gray")}
       onClick={(e) => {
-        console.log(props.text)
         if (!props.text) return
         navigator.clipboard.writeText(props.text)
         props.onClick?.(e)

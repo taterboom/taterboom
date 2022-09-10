@@ -1,8 +1,6 @@
-import Link from "next/link"
+export type LogoProps = JSX.IntrinsicElements["svg"]
 
-type LogoProps = JSX.IntrinsicElements["svg"]
-
-const Logo = (props: LogoProps) => (
+export const Logo = (props: LogoProps) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" {...props}>
     <defs>
       <clipPath id="clip-path">
@@ -109,16 +107,5 @@ const Logo = (props: LogoProps) => (
     />
   </svg>
 )
-
-export const LogoWithTextAnchor = () => {
-  return (
-    <Link href="/">
-      <a className="!no-underline flex items-center gap-1 text-sm">
-        <Logo width={22} height={22} />
-        <span className="logo-gradient bg-clip-text text-transparent">@taterbomb</span>
-      </a>
-    </Link>
-  )
-}
 
 export default Logo

@@ -1,4 +1,4 @@
-import { LogoWithTextAnchor } from "./components/Logo"
+import LogoWithTextAnchor from "./components/Logo/LogoWithTextAnchor"
 
 module.exports = {
   footer: (
@@ -14,7 +14,7 @@ module.exports = {
       {meta.author && <meta name="author" content={meta.author} />}
     </>
   ),
-  // readMore: "Read More →",
+  readMore: "Read More →",
   titleSuffix: null,
   postFooter: null,
   // cusdis: {
@@ -22,5 +22,5 @@ module.exports = {
   //   host: "your_host(optional)",
   //   lang: "your_lang",
   // },
-  darkMode: false,
+  // darkMode: true,
 }

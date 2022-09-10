@@ -15,7 +15,7 @@ class MyDocument extends Document {
             }}
           ></script>
         </Head>
-        <body className="text-word">
+        <body className="text-word dark:text-word-light">
           <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-KKSZHSL"
