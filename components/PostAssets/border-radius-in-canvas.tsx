@@ -77,7 +77,7 @@ export const CanvasExample = forwardRef<HTMLCanvasElement, any>(
             width: rectSize,
             height: rectSize,
             borderRadius: borderRidus,
-            border: `${borderSize}px solid rgba(0, 0, 0, 0.4)`,
+            border: `${borderSize}px solid rgba(104, 216, 155, 0.7)`,
             visibility: (visible & 0b10) === 0b10 ? "visible" : "hidden",
           }}
         ></div>
@@ -94,7 +94,7 @@ export const CanvasExample = forwardRef<HTMLCanvasElement, any>(
           onChange={(v: any) => {
             setVisible(v)
           }}
-          cssColor="rgba(0, 0, 0, 0.4)"
+          cssColor="rgba(104, 216, 155, 0.7)"
           canvasColor={color}
         />
       </div>
