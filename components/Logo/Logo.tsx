@@ -1,4 +1,4 @@
-type LogoProps = JSX.IntrinsicElements["svg"]
+export type LogoProps = JSX.IntrinsicElements["svg"]
 
 export const Logo = (props: LogoProps) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" {...props}>

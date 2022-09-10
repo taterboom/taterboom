@@ -14,8 +14,10 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
-  const isIndex = router.pathname === "/"
   if (Component.custom) {
+    return <Component {...pageProps} />
+  }
+  if (router.pathname === "/") {
     return <Component {...pageProps} />
   }
   if (router.pathname.startsWith("/posts/")) {
@@ -26,7 +28,7 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
     )
   }
   return (
-    <Page logo={!isIndex}>
+    <Page logo nav>
       <Component {...pageProps} />
     </Page>
   )

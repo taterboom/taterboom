@@ -6,9 +6,10 @@ import clsx from "classnames"
 type PageProps = {
   children?: React.ReactNode
   logo: boolean
+  nav: boolean
 }
 
-const Page = ({ children, logo }: PageProps) => {
+const Page = ({ children, logo, nav }: PageProps) => {
   return (
     <>
       <header className="sticky z-40 top-0 w-full backdrop-blur header-bg">
@@ -25,7 +26,7 @@ const Page = ({ children, logo }: PageProps) => {
               </a>
             </Link>
           )}
-          <Nav></Nav>
+          {nav && <Nav></Nav>}
         </div>
       </header>
       <main className="max-w-[1024px] pt-8 px-2 mx-auto">{children}</main>

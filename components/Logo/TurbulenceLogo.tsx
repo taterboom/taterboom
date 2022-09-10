@@ -1,26 +1,21 @@
 import { animated, useSpring, easings } from "react-spring"
-import Logo from "./Logo"
+import Logo, { LogoProps } from "./Logo"
 
 const AnimatedFeTurbulence = animated((props) => <feTurbulence {...props} />)
-const AnimatedFeGaussianBlur = animated((props) => <feGaussianBlur {...props} />)
 
-type TurbulenceLogoProps = {
-  children?: React.ReactNode
-}
-
-const TurbulenceLogo = (props: TurbulenceLogoProps) => {
+const TurbulenceLogo = (props: LogoProps) => {
   const attrs = useSpring({
-    from: { baseFrequency: 0.02 },
+    from: { baseFrequency: 0.012 },
     to: { baseFrequency: 0 },
     config: {
-      duration: 2000,
-      easing: easings.easeOutCubic,
+      duration: 1200,
+      easing: easings.easeOutQuad,
     },
   })
   return (
-    <div>
+    <>
       <svg style={{ display: "none" }}>
-        <filter id="turbulence">
+        <filter id="logo-turbulence">
           <AnimatedFeTurbulence numOctaves="2" {...attrs} />
           <feDisplacementMap
             xChannelSelector="R"
@@ -30,8 +25,8 @@ const TurbulenceLogo = (props: TurbulenceLogoProps) => {
           />
         </filter>
       </svg>
-      <Logo width={256} height={256} filter="url(#turbulence)"></Logo>
-    </div>
+      <Logo width={512} height={512} filter="url(#logo-turbulence)" {...props}></Logo>
+    </>
   )
 }
 

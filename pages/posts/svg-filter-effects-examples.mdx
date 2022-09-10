@@ -13,8 +13,8 @@ import gsap from "gsap"
   {`() => {
 
     useEffect(() => {
-        const feTurbulence = document.querySelector('#turbulence > feTurbulence')
-        const feDisplacementMap = document.querySelector('#turbulence > feDisplacementMap')
+        const feTurbulence = document.querySelector('#e-turbulence > feTurbulence')
+        const feDisplacementMap = document.querySelector('#e-turbulence > feDisplacementMap')
         const progress = { current: 0 }
         gsap.to(progress, {
             current: 1,
@@ -30,12 +30,12 @@ import gsap from "gsap"
 
     return <div style={{width: 300, height: 200, overflow: 'hidden'}}>
         <svg style={{display: 'none'}}>
-            <filter id="turbulence">
+            <filter id="e-turbulence">
                 <feTurbulence result="fe-turbulence" baseFrequency="0.02" numOctaves="2" />
                 <feDisplacementMap xChannelSelector="R" yChannelSelector="G" result="fe-displacement-map" scale="16" in="SourceGraphic"/>
             </filter>
         </svg>
-        <img src="/fire.webp" alt="" style={{ filter: "url(#turbulence)", margin: -16, maxWidth: 'unset'}} width="332" height="232"/>
+        <img src="/fire.webp" alt="" style={{ filter: "url(#e-turbulence)", margin: -16, maxWidth: 'unset'}} width="332" height="232"/>
     </div>
 
 }`}

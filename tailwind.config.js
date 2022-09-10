@@ -5,7 +5,11 @@ module.exports = {
     colors: {
       transparent: "transparent",
       brand: "#1661AB",
-      word: "#06132E",
+      word: {
+        dark: "#06132E",
+        DEFAULT: "#06132E",
+        light: "#f3f4f6",
+      },
       button: "#E6F4F1",
       white: "#FFFEF8",
       gray: "#999",
