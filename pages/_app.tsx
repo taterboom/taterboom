@@ -17,9 +17,6 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
   if (Component.custom) {
     return <Component {...pageProps} />
   }
-  if (router.pathname === "/") {
-    return <Component {...pageProps} />
-  }
   if (router.pathname.startsWith("/posts/")) {
     return (
       <BlogPage>

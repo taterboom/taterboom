@@ -1,6 +1,6 @@
-import { NextPage } from "next"
+import { CommonPage } from "../_app"
 
-const PropsBreak: NextPage = () => {
+const PropsBreak: CommonPage = () => {
   return (
     <iframe
       className="min-h-screen"
@@ -11,5 +11,7 @@ const PropsBreak: NextPage = () => {
     ></iframe>
   )
 }
+
+PropsBreak.custom = true
 
 export default PropsBreak

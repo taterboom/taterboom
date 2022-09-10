@@ -131,4 +131,6 @@ const Index: CommonPage = () => {
   )
 }
 
+Index.custom = true
+
 export default Index
