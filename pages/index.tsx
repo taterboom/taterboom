@@ -39,7 +39,7 @@ const SocialMedia = () => {
           <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 4 -1" />
         </filter>
       </svg>
-      <Link href="https://github.com/xue1206" passHref>
+      <Link href="https://github.com/taterboom" passHref>
         <Button type="rounded">
           <MdiGithub style={{ filter: `url(#goo)` }} />
         </Button>
