@@ -9,7 +9,7 @@ const PROJECTS = [
   },
   {
     title: "DaiDai",
-    slug: "https://daidai.taterbomb.top/",
+    slug: "https://www.daidai.cyou/",
   },
   {
     title: "ETSAP",

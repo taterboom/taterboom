@@ -74,7 +74,7 @@ const Nickname = () => {
         className="text-2xl font-bold logo-gradient bg-clip-text text-transparent"
         style={styles}
       >
-        TaterBomb
+        TaterBoom
       </animated.h1>
     </>
   )
