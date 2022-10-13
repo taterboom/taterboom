@@ -20,6 +20,14 @@ const PROJECTS = [
     title: "Rect Stroke",
     slug: "/projects/rect-stroke",
   },
+  {
+    title: "PDJ",
+    slug: "https://pdj.taterboom.com",
+  },
+  {
+    title: "PDJ Chrome extension",
+    slug: "https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj",
+  },
   // {
   //   title: "Props Break",
   //   slug: "/projects/props-break",
