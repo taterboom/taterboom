@@ -61,7 +61,9 @@ import gsap from "gsap"
     return <div style={{ filter: "url(#goo)" }}>
         <svg style={{display: 'none'}}>
             <filter id="goo">
+                {/* blur to make edge pixels alpha < 1  */}
                 <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+                {/* make the pixels with <1 alpha be opaque */}
                 <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
             </filter>
         </svg>
@@ -69,4 +71,34 @@ import gsap from "gsap"
         <div id="down" style={{ width: 128, height: 128, background: 'green', borderRadius: 999, marginTop: -40}}></div>
     </div>
 }`}
+</Playground>
+
+## Light and Shadow
+
+<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ gsap }}>
+  {`() => {
+    return <div>
+        <svg style={{ height: 1 }}>
+            <filter id="felight">
+                {/* blur the source image to make bump map less sharp */}
+                <feGaussianBlur stdDeviation="3" />
+                {/* create bump map based on alpha channel */}
+                <feColorMatrix type="luminanceToAlpha" result="bumpMap" />
+                {/* use bump map for lighting filter */}
+                <feDiffuseLighting in="bumpMap" surfaceScale="3">
+                    <fePointLight x="225" y="150" z="30"></fePointLight>
+                </feDiffuseLighting>
+                {/* compose the lighting result with source image using multiplication */}
+                <feComposite in2="SourceGraphic" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" />
+                {/* not <feBlend in2="SourceGraphic" mode="multiply" /> */}
+            </filter>
+        </svg>
+        <img style={{ filter: "url(#felight)" }} src="/assets/posts/svg-filter-effects/stoneroad.jpeg" width="332" height="232" onMouseMove={e => {
+            document.querySelector('#felight fePointLight').setAttribute('x', e.nativeEvent.offsetX)
+            document.querySelector('#felight fePointLight').setAttribute('y', e.nativeEvent.offsetY)
+        }}/>
+    </div>
+
+}`}
+
 </Playground>

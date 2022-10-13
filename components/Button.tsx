@@ -16,7 +16,7 @@ type ButtonProps = Omit<
 const Button = ({ type = "text", href, className, children, ...restProps }: ButtonProps) => {
   const btnClassName = useMemo(() => {
     let _className =
-      "inline-block rounded mx-2 cursor-pointer outline-none focus:outline-0 hover:bg-button/30 active:bg-button"
+      "inline-block rounded mx-2 cursor-pointer outline-none focus:outline-0 hover:bg-button/30 active:bg-button/60"
     if (type === "text") {
       _className += " py-1 px-3"
     } else {

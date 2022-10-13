@@ -14,14 +14,18 @@ export const CodeEditor = withLive<CodeEditorProps>((props) => {
   const code = props.code || props.live?.code
 
   return (
-    <div className={clsx(props.className, "relative")}>
+    <div className={clsx(props.className, "group relative")}>
       {/* @ts-ignore */}
       <LiveEditor
         theme={theme}
         {...omit(props, "className", "live")}
         className={props.editorClassName}
       ></LiveEditor>
-      <CopyButton className="absolute right-0 top-1" type="rounded" text={code}></CopyButton>
+      <CopyButton
+        className="absolute right-0 top-1 opacity-0 transition-opacity group-hover:opacity-100"
+        type="rounded"
+        text={code}
+      ></CopyButton>
     </div>
   )
 })
