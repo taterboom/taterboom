@@ -20,10 +20,10 @@ const PROJECTS = [
     title: "Rect Stroke",
     slug: "/projects/rect-stroke",
   },
-  {
-    title: "Props Break",
-    slug: "/projects/props-break",
-  },
+  // {
+  //   title: "Props Break",
+  //   slug: "/projects/props-break",
+  // },
 ]
 
 const Index: CommonPage = () => {
