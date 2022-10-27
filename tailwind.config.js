@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  darkMode: ["class", '[data-theme="dark"]'],
   theme: {
     extend: {},
     colors: {
@@ -12,9 +13,9 @@ module.exports = {
       },
       button: "#E6F4F1",
       white: "#FFFEF8",
+      black: "#000000",
       gray: "#999",
     },
   },
   plugins: [],
-  // darkMode: "class",
 }

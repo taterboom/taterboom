@@ -22,5 +22,4 @@ module.exports = {
   //   host: "your_host(optional)",
   //   lang: "your_lang",
   // },
-  // darkMode: true,
 }

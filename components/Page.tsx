@@ -5,23 +5,31 @@ import clsx from "classnames"
 
 type PageProps = {
   children?: React.ReactNode
-  logo: boolean
-  nav: boolean
+  logo?: boolean
+  nav?: boolean
+  fixedNav?: boolean
+  squeeze?: boolean
 }
 
-const Page = ({ children, logo, nav }: PageProps) => {
+const Page = ({ children, logo, nav, fixedNav, squeeze }: PageProps) => {
+  const containerClassname = clsx(
+    "w-full",
+    fixedNav &&
+      "sticky z-40 top-0 header-bg backdrop-saturate-150 backdrop-blur-md border-b border-white/10"
+  )
+  const wrapperClassname = clsx(
+    "mx-auto h-16 px-2 flex items-center",
+    logo && fixedNav ? "justify-between" : "justify-end",
+    squeeze && "max-w-[1024px]"
+  )
+
   return (
     <>
-      <header className="sticky z-40 top-0 w-full backdrop-blur header-bg">
-        <div
-          className={clsx(
-            "max-w-[1024px] mx-auto h-16 px-2 flex items-center ",
-            logo ? "justify-between" : "justify-end"
-          )}
-        >
+      <header className={containerClassname}>
+        <div className={wrapperClassname}>
           {logo && (
             <Link href="/" passHref>
-              <a>
+              <a className={clsx(!fixedNav && "fixed left-2")}>
                 <Logo width={48} height={48}></Logo>
               </a>
             </Link>
