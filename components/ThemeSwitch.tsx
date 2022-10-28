@@ -6,7 +6,7 @@ type ThemeSwitchProps = {}
 
 function ThemeSwitch(props: ThemeSwitchProps) {
   const { resolvedTheme, theme, systemTheme, setTheme } = useTheme()
-  console.log(resolvedTheme, theme, systemTheme)
+
   return (
     <Button
       type="rounded"

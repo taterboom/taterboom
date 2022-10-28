@@ -12,8 +12,8 @@ specifiers:
   lodash: ^4.17.21
   next: 12.2.5
   next-themes: ^0.2.1
-  nextra: 2.0.0-beta.38
-  nextra-theme-blog: 2.0.0-beta.38
+  nextra: 2.0.0-beta.41
+  nextra-theme-blog: 2.0.0-beta.41
   postcss: ^8.4.8
   react: 17.0.2
   react-dom: 17.0.2
@@ -30,8 +30,8 @@ dependencies:
   lodash: 4.17.21
   next: 12.2.5_sfoxds7t5ydpegc3knd667wn6m
   next-themes: 0.2.1_pzmtmsmkyiq4foirxc7gldcjme
-  nextra: 2.0.0-beta.38_pzmtmsmkyiq4foirxc7gldcjme
-  nextra-theme-blog: 2.0.0-beta.38_pzmtmsmkyiq4foirxc7gldcjme
+  nextra: 2.0.0-beta.41_pzmtmsmkyiq4foirxc7gldcjme
+  nextra-theme-blog: 2.0.0-beta.41_pzmtmsmkyiq4foirxc7gldcjme
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-live: 2.4.1_sfoxds7t5ydpegc3knd667wn6m
@@ -2853,8 +2853,8 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
-  /nextra-theme-blog/2.0.0-beta.38_pzmtmsmkyiq4foirxc7gldcjme:
-    resolution: {integrity: sha512-akdcjlEsxADFsBGmNSSacW8zapWUqZmT8ULPiiSFzyKcMVFAcB8DYtx/ZkaINN3c0SptOg3HrH/ANHQGLClKkg==}
+  /nextra-theme-blog/2.0.0-beta.41_pzmtmsmkyiq4foirxc7gldcjme:
+    resolution: {integrity: sha512-OXtWDp9cqph2U5/Ech5SJkQq8UH+9wetQW+ghZKQtZB1W+RsdZPZD32yrzWLQIdEwzm1/xGxlPvGn2jgB7Qv+Q==}
     peerDependencies:
       next: '>=9.5.3'
       react: '>=16.13.1'
@@ -2871,8 +2871,8 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /nextra/2.0.0-beta.38_pzmtmsmkyiq4foirxc7gldcjme:
-    resolution: {integrity: sha512-3dgqT3+9p7qQ4HcrXN/JarRzVEnsnueNzJ+h0/tfK0sLu1zHYLi8FaYFSZvE1BRdArKi3S3WMG1T92vSs6rDIQ==}
+  /nextra/2.0.0-beta.41_pzmtmsmkyiq4foirxc7gldcjme:
+    resolution: {integrity: sha512-AlJdLRYe1r/mMKEjGfr6VqwWkUFKj0AdOBby1k2JILgAK33X+/xiJJ4JF2zLQx0clacINKg3wod8txSJwSWJ0g==}
     peerDependencies:
       next: '>=9.5.3'
       react: '>=16.13.1'

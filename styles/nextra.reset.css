@@ -1,5 +1,5 @@
 @media (min-width: 768px) {
-    .md\:prose {
+    .md\:nx-prose {
         max-width: 128ch !important;
     }
 }

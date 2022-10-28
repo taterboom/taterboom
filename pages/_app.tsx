@@ -16,7 +16,9 @@ type AppPropsWithLayout = AppProps & {
 
 function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
   return (
-    <ThemeProvider>
+    // https://github.com/shuding/nextra/blob/core/packages/nextra-theme-blog/src/index.tsx#L45
+    // use next-themes to sync theme with nextra.
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       {(() => {
         if (Component.custom) {
           return <Component {...pageProps} />
