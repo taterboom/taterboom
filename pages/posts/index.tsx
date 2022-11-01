@@ -24,6 +24,10 @@ const POSTS = [
     title: "SVG Filter Effects Examples",
     slug: "/posts/svg-filter-effects-examples",
   },
+  {
+    title: "Caddy 反向代理和自动HTTPS",
+    slug: "/posts/caddy-reverse-proxy",
+  },
 ]
 
 const Index: CommonPage = () => {
