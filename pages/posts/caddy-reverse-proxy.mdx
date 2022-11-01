@@ -1,0 +1,46 @@
+---
+title: Caddy反向代理和自动HTTPS
+---
+
+> [Caddy](https://caddyserver.com/) is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.
+
+`Caddy` 可以非常方便地做反向代理，并且能够自动申请和更新 `SSL` 证书，使得你的网站支持 `https`。相比于 `Nignx`，整个过程非常简便丝滑。
+
+## 安装
+
+参考[官方安装指南](https://caddyserver.com/docs/install)，比如 CentOS 的安装命令是
+
+```bash
+yum install yum-plugin-copr
+yum copr enable @caddy/caddy
+yum install caddy
+```
+
+## 反向代理
+
+```bash
+caddy reverse-proxy --from example.com --to :8080
+```
+
+`example.com`是你的域名，`8080`端口是你想被代理的端口，使用浏览器访问，会自动重定向到`https`。
+
+## 后台运行
+
+在当前工作目录新建配置文件`Caddyfile`
+
+```
+a.example.com {
+	reverse_proxy :8080
+}
+
+b.example.com {
+	reverse_proxy :8081
+}
+```
+
+在当前工作目录启动命令
+
+```bash
+caddy start # instead of `caddy run` which runs in the foreground.
+# use `caddy stop` to stop it.
+```
