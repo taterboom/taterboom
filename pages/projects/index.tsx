@@ -36,7 +36,7 @@ const PROJECTS = [
 
 const Index: CommonPage = () => {
   return (
-    <ul>
+    <ul className="flex flex-col gap-4">
       {PROJECTS.map((item) => (
         <li key={item.title}>
           <Link href={item.slug} passHref>

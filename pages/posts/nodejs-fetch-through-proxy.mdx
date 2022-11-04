@@ -1,0 +1,26 @@
+---
+title: nodejs中如何通过代理发送请求
+---
+
+我们一般使用`fetch` (nodejs@18)或者`node-fetch`来发送请求，但是请求不会走本机代理，这会导致请求墙外的资源失败。要想在 nodejs 中请求墙外资源，需要通过代理（科学上网）。
+
+`node-fetch` 支持传入 `agent` 参数，用来配置代理。[https-proxy-agent](https://github.com/TooTallNate/node-https-proxy-agent)是一个代理库，可以用来生成 `agent` 。
+
+```jsx
+const proxy = "http://127.0.0.1:7890"
+const httpsProxyAgent = new HttpsProxyAgent(proxy)
+
+fetch("https://www.google.com", {
+  agent: httpsProxyAgent,
+})
+```
+
+一般 VPN 的代理都是`http://127.0.0.1:7890` ，并且 VPN 软件会提供复制代理到命令行的功能，一般复制的命令是`export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890` 。
+
+所以上面的代码可以改为从环境变量中获取 proxy
+
+```jsx
+const httpsProxyAgent = new HttpsProxyAgent(process.env.http_proxy)
+```
+
+注意，node@18 原生的 `fetch` 是不支持配置 `agent` 的。 🤷‍♂️

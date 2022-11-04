@@ -28,6 +28,10 @@ const POSTS = [
     title: "Caddy 反向代理和自动HTTPS",
     slug: "/posts/caddy-reverse-proxy",
   },
+  {
+    title: "nodejs中如何通过代理发送请求",
+    slug: "/posts/nodejs-fetch-through-proxy",
+  },
 ]
 
 const Index: CommonPage = () => {
