@@ -1,0 +1,77 @@
+---
+title: 如何基于Docker部署Playwright项目
+---
+
+## 官方 Image
+
+[mcr.microsoft.com/playwright:v1.27.1-focal](https://playwright.dev/docs/docker#base-images)
+
+官方 Image 是基于 Ubuntu 的，体积太大。目前官方在其[文档](https://playwright.dev/docs/docker#base-images)中提到没有意向支持 Alpine。
+
+## 基于 node-alpine Image
+
+以一个 `nextjs` 项目举例：
+
+```docker
+FROM node:16-alpine AS deps
+
+# skip browser download when installing playwright npm package
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD 1
+
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Install dependencies based on the preferred package manager
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN npm install pnpm -g && pnpm i --frozen-lockfile;
+
+# Rebuild the source code only when needed
+FROM node:16-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+RUN npm run build
+
+# Production image, copy all the files and run next
+FROM node:16-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+# custom executablePath
+ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser
+# install chromium manually
+RUN apk add --no-cache chromium
+
+COPY --from=builder /app/public ./public
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+EXPOSE 3000
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
+```
+
+安装 npm 依赖时，设置环境变量 `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` 阻止安装 playwright 时自动安装浏览器。
+
+使用命令 `apk add --no-cache chromium` 手动安装 chromium，并设置环境变量 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium-browser` 即为 chromium 的启动路径。
+
+代码中启动浏览器的代码配置 `executablePath`，使得 playwright 通过传入的路径启动 chromium
+
+```tsx
+import { chromium } from "playwright-chromium"
+
+chromium.launch({
+  executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH,
+})
+```
+
+通过 `docker build . -t xxx` 即可构建 Image，构建完成后通过 `docker run -d -p 3000:3000 xxx` 启动。
