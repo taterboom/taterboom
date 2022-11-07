@@ -32,6 +32,10 @@ const POSTS = [
     title: "nodejs中如何通过代理发送请求",
     slug: "/posts/nodejs-fetch-through-proxy",
   },
+  {
+    title: "如何基于Docker部署Playwright项目",
+    slug: "/posts/playwright-alpine",
+  },
 ]
 
 const Index: CommonPage = () => {
