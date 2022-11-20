@@ -14,6 +14,10 @@ class MyDocument extends Document {
           })(window,document,'script','dataLayer','GTM-KKSZHSL');`,
             }}
           ></script>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.6.0/style.css"
+          />
         </Head>
         <body className="text-word dark:text-word-light">
           <noscript>
