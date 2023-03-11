@@ -32,6 +32,10 @@ const PROJECTS = [
   //   title: "Props Break",
   //   slug: "/projects/props-break",
   // },
+  {
+    title: "CompositeX",
+    slug: "https://compositex.taterboom.com/",
+  },
 ]
 
 const Index: CommonPage = () => {
