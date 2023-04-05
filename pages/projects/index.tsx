@@ -4,12 +4,20 @@ import type { CommonPage } from "../_app"
 
 const PROJECTS = [
   {
+    title: "tab-controller",
+    slug: "https://chrome.google.com/webstore/detail/tab-controller/bnampjhjfnfghiclahecmdkbmiebhfbo",
+  },
+  {
+    title: "ChatSwaggerType",
+    slug: "https://chrome.google.com/webstore/detail/chatswaggertype/lkminimpgnlpggmkanlhiahjafjnllfk",
+  },
+  {
     title: "RRCrop",
     slug: "https://www.rrcrop.cyou",
   },
   {
     title: "DaiDai",
-    slug: "https://www.daidai.cyou/",
+    slug: "https://chrome.google.com/webstore/detail/daidai/khcaoeekfbjiiipcjpegbniimnmomafo",
   },
   {
     title: "ETSAP",
@@ -22,10 +30,6 @@ const PROJECTS = [
   },
   {
     title: "PDJ",
-    slug: "https://pdj.taterboom.com",
-  },
-  {
-    title: "PDJ Chrome extension",
     slug: "https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj",
   },
   // {
