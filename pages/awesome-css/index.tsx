@@ -1,15 +1,19 @@
+import Link from "next/link"
 import Glow from "../../components/awesome-css/Glow"
+import Button from "../../components/Button"
 
+const PATH_PREFIX = "/awesome-css"
 const Items = [
   {
     Component: Glow,
     label: "Glow",
+    link: `${PATH_PREFIX}/glow`,
   },
 ]
 
 function Item(props: { data: (typeof Items)[0] }) {
   return (
-    <div>
+    <div className="space-y-2 p-4">
       <div className="relative p-px bg-black rounded-2xl overflow-hidden">
         <div className="relative z-10 p-4 bg-black rounded-2xl">
           <props.data.Component />
@@ -29,7 +33,11 @@ function Item(props: { data: (typeof Items)[0] }) {
           }}
         ></div>
       </div>
-      <div>{props.data.label}</div>
+      <div>
+        <Link href={props.data.link}>
+          <Button>{props.data.label}</Button>
+        </Link>
+      </div>
     </div>
   )
 }

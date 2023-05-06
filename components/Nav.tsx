@@ -5,11 +5,14 @@ import ThemeSwitch from "./ThemeSwitch"
 const Nav = () => {
   return (
     <nav className="flex items-center">
-      <Link href="/posts" passHref>
+      <Link href="/posts">
         <Button>Blog</Button>
       </Link>
-      <Link href="/projects" passHref>
+      <Link href="/projects">
         <Button>Projects</Button>
+      </Link>
+      <Link href="/awesome-css">
+        <Button>AwesomeCSS</Button>
       </Link>
       <ThemeSwitch></ThemeSwitch>
     </nav>

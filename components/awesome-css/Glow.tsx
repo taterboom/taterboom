@@ -1,20 +1,9 @@
 import { useRef, useState } from "react"
-import { motion } from "framer-motion"
 
 function GlowBg() {
-  const [debug, setDebug] = useState(false)
   return (
-    <div
-      className="relative p-px bg-black rounded-2xl overflow-hidden"
-      onClick={() => setDebug((v) => !v)}
-    >
-      <div
-        className="relative z-10 p-8 bg-black rounded-2xl"
-        style={{ visibility: debug ? "hidden" : "initial" }}
-      >
-        {" "}
-        content{" "}
-      </div>
+    <div className="relative p-px bg-black text-white rounded-2xl overflow-hidden">
+      <div className="relative z-10 p-8 bg-black rounded-2xl">content</div>
       <div
         className="absolute inset-0"
         style={{
@@ -45,7 +34,7 @@ function GlowButton() {
   }
   return (
     <button
-      className="group relative px-10 py-3 bg-black rounded-2xl overflow-hidden"
+      className="group relative px-10 py-3 bg-black text-white rounded-2xl overflow-hidden"
       onMouseMove={onMouseMove}
     >
       <div className="absolute inset-0">
@@ -66,9 +55,9 @@ function GlowButton() {
         ></div>
         <div
           ref={glowBgEl}
-          className="absolute inset-px rounded-2xl opacity-0 group-hover:opacity-20"
+          className="absolute inset-px rounded-2xl opacity-0 group-hover:opacity-50"
           style={{
-            background: "radial-gradient( circle at var(--x) var(--y), #666, #0000000f )",
+            background: "radial-gradient( circle at var(--x) var(--y), #666, #0000000f)",
             transition: "opacity 0.5s",
           }}
         ></div>
