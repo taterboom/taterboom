@@ -10,10 +10,9 @@ type ButtonProps = Omit<
   "type"
 > & {
   type?: "text" | "rounded"
-  href?: string
 }
 
-const Button = ({ type = "text", href, className, children, ...restProps }: ButtonProps) => {
+const Button = ({ type = "text", className, children, ...restProps }: ButtonProps) => {
   const btnClassName = useMemo(() => {
     let _className =
       "inline-block rounded mx-2 cursor-pointer outline-none focus:outline-0 hover:bg-button/30 active:bg-button/60"
@@ -24,13 +23,6 @@ const Button = ({ type = "text", href, className, children, ...restProps }: Butt
     }
     return clsx(_className, className)
   }, [type, className])
-  if (href) {
-    return (
-      <Link href={href} className={btnClassName}>
-        {children}
-      </Link>
-    )
-  }
   return (
     <button className={btnClassName} {...restProps}>
       {children}
