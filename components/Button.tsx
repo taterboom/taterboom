@@ -26,8 +26,8 @@ const Button = ({ type = "text", href, className, children, ...restProps }: Butt
   }, [type, className])
   if (href) {
     return (
-      <Link href={href}>
-        <a className={btnClassName}>{children}</a>
+      <Link href={href} className={btnClassName}>
+        {children}
       </Link>
     )
   }

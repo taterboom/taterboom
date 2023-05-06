@@ -28,10 +28,8 @@ const Page = ({ children, logo, nav, fixedNav, squeeze }: PageProps) => {
       <header className={containerClassname}>
         <div className={wrapperClassname}>
           {logo && (
-            <Link href="/" passHref>
-              <a className={clsx(!fixedNav && "fixed left-2")}>
-                <Logo width={48} height={48}></Logo>
-              </a>
+            <Link href="/" passHref className={clsx(!fixedNav && "fixed left-2")}>
+              <Logo width={48} height={48}></Logo>
             </Link>
           )}
           {nav && <Nav></Nav>}

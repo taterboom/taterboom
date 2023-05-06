@@ -5,9 +5,7 @@ export const Language = ({ path, type }: { path: string; type: "zh" | "en" }) =>
   const text = type === "en" ? "English Version" : "中文 Chinese Version"
   return (
     <blockquote className="text-sm">
-      <Link href={href}>
-        <a>{text}</a>
-      </Link>
+      <Link href={href}>{text}</Link>
     </blockquote>
   )
 }
