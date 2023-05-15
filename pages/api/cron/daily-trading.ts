@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client"
+import { omit } from "lodash"
 import { NextApiRequest, NextApiResponse } from "next"
 import nodemailer from "nodemailer"
 
@@ -78,7 +79,8 @@ function generateBody(notionResults: any[]) {
         })
         .join("")
       return `<div>
-        <div>${JSON.stringify(databaseItemProperties)}</div>
+        <h2>${databaseItemProperties.code} ${databaseItemProperties.extra}</h2>
+        <div>${JSON.stringify(omit(databaseItemProperties, ["code", "extra"]))}</div>
         <div>${childrenBody}</div>
       </div>`
     })
