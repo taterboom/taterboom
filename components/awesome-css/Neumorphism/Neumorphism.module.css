@@ -1,0 +1,17 @@
+.neumorphism-button {
+  outline: none;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  border-radius: 1rem;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+  box-shadow: var(--size) var(--size) calc(var(--size) * 2) var(--shadow-color-1),
+    calc(var(--size) * -1) calc(var(--size) * -1) calc(var(--size) * 2) var(--shadow-color-2);
+}
+
+.neumorphism-button:active {
+  box-shadow: inset var(--size) var(--size) calc(var(--size) * 2) var(--shadow-color-1),
+    inset calc(var(--size) * -1) calc(var(--size) * -1) calc(var(--size) * 2) var(--shadow-color-2);
+}

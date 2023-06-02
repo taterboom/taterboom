@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 
-function GlowBg() {
+export function GlowBg() {
   return (
     <div className="relative p-px bg-black text-white rounded-2xl overflow-hidden">
       <div className="relative z-10 p-8 bg-black rounded-2xl">content</div>
@@ -22,7 +22,7 @@ function GlowBg() {
   )
 }
 
-function GlowButton() {
+export function GlowButton() {
   const glowBgEl = useRef<HTMLDivElement>(null)
   const onMouseMove = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement
@@ -34,7 +34,7 @@ function GlowButton() {
   }
   return (
     <button
-      className="group relative px-10 py-3 bg-black text-white rounded-2xl overflow-hidden"
+      className="group relative px-12 py-4 text-xl font-semibold bg-black text-white rounded-2xl overflow-hidden text-center"
       onMouseMove={onMouseMove}
     >
       <div className="absolute inset-0">
@@ -64,14 +64,5 @@ function GlowButton() {
       </div>
       <div className="relative z-10"> Button </div>
     </button>
-  )
-}
-
-export default function Glow() {
-  return (
-    <div className="space-y-1">
-      <GlowBg />
-      <GlowButton />
-    </div>
   )
 }
