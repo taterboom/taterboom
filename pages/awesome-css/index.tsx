@@ -2,6 +2,7 @@ import Link from "next/link"
 import Button from "../../components/Button"
 import GlowDisplay from "../../components/awesome-css/Glow/GlowDisplay"
 import NeumorphismDisplay from "../../components/awesome-css/Neumorphism/NeumorphismDisplay"
+import MaskDisplay from "../../components/awesome-css/Mask/MaskDisplay"
 
 const PATH_PREFIX = "/awesome-css"
 
@@ -21,6 +22,11 @@ const Items: ItemConfig[] = [
     Component: NeumorphismDisplay,
     label: "Neumorphism",
     link: "https://neumorphism-design.vercel.app",
+  },
+  {
+    Component: MaskDisplay,
+    label: "Mask",
+    link: `${PATH_PREFIX}/mask`,
   },
 ]
 
