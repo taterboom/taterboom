@@ -40,6 +40,14 @@ const POSTS = [
     title: "浏览器插件侧面板（side panel）",
     slug: "/posts/chrome-exension-side-panel",
   },
+  {
+    title: "Next.js13 + NextAuth Starter 1",
+    slug: "https://taterboom.notion.site/Next-js13-NextAuth-Starter-d0e5c683a58e4c79b4762e805fdb64a9",
+  },
+  {
+    title: "Next.js13 + NextAuth Starter 2",
+    slug: "https://taterboom.notion.site/Next-js13-NextAuth-Starter-Part2-42e753ce6a844070bdea302a306d3ec4",
+  },
 ]
 
 const Index: CommonPage = () => {
