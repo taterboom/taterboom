@@ -1,0 +1,46 @@
+---
+title: Chrome extension side panel
+description: Chrome extension 最新支持了侧面板（side panel）功能，使用户可以在网页的主要内容旁边查看更多信息。本篇文章介绍如何给插件添加侧面板功能，并且介绍了一些已经支持了侧面板的插件。
+---
+
+import CodePlayground from "../../components/CodePlayground"
+
+# Chrome extension side panel
+
+✨ Chrome 浏览器具有内置的侧面板（side panel）功能，使用户可以在网页的主要内容旁边查看更多信息。现在扩展程序可以在侧面板中显示它们自己的用户界面，从而实现与用户浏览体验相补充的持久体验。
+
+![chrome extension example](https://wd.imgix.net/image/BhuKGJaIeLNPW9ehns59NfwqKxF2/2uFG8qxM7cqyMuXWlD9R.png?auto=format&w=582)
+
+🔨 首先在`manifest.json`中申请权限并且设置 html 文件位置，可以直接将 popup 的 html 文件当做 side panel。
+
+```json
+{
+    ...
+    "permissions": ["sidePanel"]
+    "side_panel": {
+        "default_path": "xxx"
+    }
+}
+```
+
+因为 side panel 是持久化显示的，所以一般都需要在用户切换 tab 或者打开新网页等情况下重新初始化 UI。
+
+```js
+// init when activated tab change or navigate to a new website
+chrome.tabs.onActivated.addListener(init)
+chrome.webNavigation.onCommitted.addListener(init)
+```
+
+🟡 一个小的注意点: side panel 一般最小宽度是 320px，所以如果你直接拿过来当做 side panel 的 popup 页面宽度小于 320px，那么在 side panel 中会有一部分内容被隐藏。
+
+📄 详细信息可以阅读[官方文档](https://developer.chrome.com/docs/extensions/reference/sidePanel/)。
+
+🔥 这里有一些已经支持了 side panel 的扩展：
+
+[Remember Last Read](https://chrome.google.com/webstore/detail/remember-last-read/fhnjjnlapfaebcoencidehggpiaplaid) - 自动检测文章目录，记录上一次阅读的段落
+
+![remember-last-read](https://lh3.googleusercontent.com/39i3Sr3BT_ApIP4UUlnoYe-JRtJTIlB1d_gIwCCDl4PHiQZUX0DcmIpbRu-7vQdjjV5Xf3geVd0ZBuaRrVLFdO07BA=w640-h400-e365-rj-sc0x00ffffff)
+
+[PDJ](https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj) - 在浏览 Github 仓库时实时查看 package.json
+
+![PDJ](https://lh3.googleusercontent.com/MqKHHWAS6OYZg9h0-wHhlNoYX8Tp1fFAXwTeiOmhXhalDgszaiftceGRZV7YALy_5HSgJ-lF99jYcXqg7fP9C9fROw=w640-h400-e365-rj-sc0x00ffffff)

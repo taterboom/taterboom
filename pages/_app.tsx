@@ -1,5 +1,6 @@
 import "../styles/globals.css"
 import "../styles/nextra.reset.css"
+import "../styles/sandpack.css"
 import type { AppProps } from "next/app"
 import Page from "../components/Page"
 import { NextPage } from "next"

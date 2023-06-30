@@ -36,6 +36,10 @@ const POSTS = [
     title: "如何基于Docker部署Playwright项目",
     slug: "/posts/playwright-alpine",
   },
+  {
+    title: "浏览器插件侧面板（side panel）",
+    slug: "/posts/chrome-exension-side-panel",
+  },
 ]
 
 const Index: CommonPage = () => {
