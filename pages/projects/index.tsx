@@ -3,42 +3,46 @@ import Button from "../../components/Button"
 import type { CommonPage } from "../_app"
 
 const PROJECTS = [
-  {
-    title: "tab-controller",
-    slug: "https://chrome.google.com/webstore/detail/tab-controller/bnampjhjfnfghiclahecmdkbmiebhfbo",
-  },
-  {
-    title: "ChatSwaggerType",
-    slug: "https://chrome.google.com/webstore/detail/chatswaggertype/lkminimpgnlpggmkanlhiahjafjnllfk",
-  },
-  {
-    title: "RRCrop",
-    slug: "https://www.rrcrop.cyou",
-  },
-  {
-    title: "DaiDai",
-    slug: "https://chrome.google.com/webstore/detail/daidai/khcaoeekfbjiiipcjpegbniimnmomafo",
-  },
-  {
-    title: "ETSAP",
-    slug: "https://etsap.vercel.app",
-    desc: "paste and copy text, transfer text easily between PC and Mobile",
-  },
-  {
-    title: "Rect Stroke",
-    slug: "/projects/rect-stroke",
-  },
-  {
-    title: "PDJ",
-    slug: "https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj",
-  },
+  // {
+  //   title: "ChatSwaggerType",
+  //   slug: "https://chrome.google.com/webstore/detail/chatswaggertype/lkminimpgnlpggmkanlhiahjafjnllfk",
+  // },
+  // {
+  //   title: "DaiDai",
+  //   slug: "https://chrome.google.com/webstore/detail/daidai/khcaoeekfbjiiipcjpegbniimnmomafo",
+  // },
+  // {
+  //   title: "ETSAP",
+  //   slug: "https://etsap.vercel.app",
+  //   desc: "paste and copy text, transfer text easily between PC and Mobile",
+  // },
+  // {
+  //   title: "Rect Stroke",
+  //   slug: "/projects/rect-stroke",
+  // },
   // {
   //   title: "Props Break",
   //   slug: "/projects/props-break",
   // },
   {
+    title: "tab-controller",
+    slug: "https://chrome.google.com/webstore/detail/tab-controller/bnampjhjfnfghiclahecmdkbmiebhfbo",
+  },
+  {
     title: "CompositeX",
-    slug: "https://compositex.taterboom.com/",
+    slug: "https://compositex.taterboom.com",
+  },
+  {
+    title: "PDJ",
+    slug: "https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj",
+  },
+  {
+    title: "RR-Crop",
+    slug: "https://rrcrop.taterboom.com",
+  },
+  {
+    title: "PromptSnippets",
+    slug: "https://promptsnippets.taterboom.com",
   },
 ]
 
