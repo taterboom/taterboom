@@ -48,6 +48,10 @@ const POSTS = [
     title: "Next.js13 + NextAuth Starter 2",
     slug: "https://taterboom.notion.site/Next-js13-NextAuth-Starter-Part2-42e753ce6a844070bdea302a306d3ec4",
   },
+  {
+    title: "向量的点积和叉积及其运用",
+    slug: "/posts/dot-and-cross-product",
+  },
 ]
 
 const Index: CommonPage = () => {

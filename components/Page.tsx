@@ -20,7 +20,7 @@ const Page = ({ children, logo, nav, fixedNav, squeeze }: PageProps) => {
   const wrapperClassname = clsx(
     "mx-auto h-16 px-2 flex items-center",
     logo && fixedNav ? "justify-between" : "justify-end",
-    squeeze && "max-w-[1024px]"
+    squeeze && "max-w-[960px]"
   )
 
   return (
@@ -35,7 +35,7 @@ const Page = ({ children, logo, nav, fixedNav, squeeze }: PageProps) => {
           {nav && <Nav></Nav>}
         </div>
       </header>
-      <main className="max-w-[1024px] pt-8 px-2 mx-auto">{children}</main>
+      <main className="max-w-[960px] pt-8 px-2 mx-auto">{children}</main>
     </>
   )
 }
