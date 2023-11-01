@@ -3,13 +3,14 @@ import Button from "../../components/Button"
 import GlowDisplay from "../../components/awesome-css/Glow/GlowDisplay"
 import NeumorphismDisplay from "../../components/awesome-css/Neumorphism/NeumorphismDisplay"
 import MaskDisplay from "../../components/awesome-css/Mask/MaskDisplay"
+import AreaLightDisplay from "@/components/awesome-css/AreaLight/AreaLightDisplay"
 
 const PATH_PREFIX = "/awesome-css"
 
 type ItemConfig = {
   Component: React.ComponentType<any>
   label: string
-  link: string
+  link?: string
 }
 
 const Items: ItemConfig[] = [
@@ -28,6 +29,10 @@ const Items: ItemConfig[] = [
     label: "Mask",
     link: `${PATH_PREFIX}/mask`,
   },
+  {
+    Component: AreaLightDisplay,
+    label: "Area Light",
+  },
 ]
 
 function Item(props: { data: ItemConfig }) {
@@ -35,9 +40,13 @@ function Item(props: { data: ItemConfig }) {
     <div className="space-y-2 p-4">
       <props.data.Component></props.data.Component>
       <div>
-        <Link href={props.data.link}>
+        {props.data.link ? (
+          <Link href={props.data.link}>
+            <Button>{props.data.label}</Button>
+          </Link>
+        ) : (
           <Button>{props.data.label}</Button>
-        </Link>
+        )}
       </div>
     </div>
   )

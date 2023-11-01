@@ -1,0 +1,10 @@
+.arealight {
+    width: 100%;
+    height: 100%;
+    background-image: conic-gradient(from 90deg at 70% 50%, white, #2753F5), conic-gradient(from 270deg at 30% 50%, #2753F5, white);
+    background-position-x: 0%, 99.9%;
+    background-position-y: 0%, 0%;
+    background-size: 50% 100%, 50% 100%;
+    background-repeat: no-repeat;
+    transform: rotate(180deg);
+}
