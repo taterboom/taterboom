@@ -52,6 +52,10 @@ const POSTS = [
     title: "点积和叉积在开发中的实用技巧",
     slug: "/posts/dot-and-cross-product",
   },
+  {
+    title: "Phpmyadmin: connection refused",
+    slug: "https://taterboom.notion.site/Phpmyadmin-6bf4b76b6381413bbb35be4bd41c0bbb",
+  },
 ]
 
 const Index: CommonPage = () => {
