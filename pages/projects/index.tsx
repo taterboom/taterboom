@@ -44,6 +44,10 @@ const PROJECTS = [
     title: "PromptSnippets",
     slug: "https://promptsnippets.taterboom.com",
   },
+  {
+    title: "Figma Plugin - AwesomeExport",
+    slug: "https://www.figma.com/community/plugin/1224919959068281380/awesomeexport",
+  },
 ]
 
 const Index: CommonPage = () => {
