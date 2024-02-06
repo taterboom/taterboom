@@ -64,7 +64,7 @@ const POSTS = [
     title: "Modify Text Content in Rich Text Editors",
     slug: "/posts/change-text-in-contenteditable",
   },
-]
+].reverse()
 
 const Index: CommonPage = () => {
   return (
