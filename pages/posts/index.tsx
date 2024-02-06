@@ -56,6 +56,14 @@ const POSTS = [
     title: "Phpmyadmin: connection refused",
     slug: "https://taterboom.notion.site/Phpmyadmin-6bf4b76b6381413bbb35be4bd41c0bbb",
   },
+  {
+    title: "如何修改富文本编辑器的文本内容",
+    slug: "/posts/change-text-in-contenteditable-zh",
+  },
+  {
+    title: "Modify Text Content in Rich Text Editors",
+    slug: "/posts/change-text-in-contenteditable",
+  },
 ]
 
 const Index: CommonPage = () => {
