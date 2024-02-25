@@ -78,3 +78,41 @@ export function MaterialSymbolsDarkMode(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
+export function TablerBrandBilibili(props: any) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M3 10a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zm5-7l2 3m6-3l-2 3m-5 7v-2m6 0v2"
+      ></path>
+    </svg>
+  )
+}
+
+export function XhsIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width="1em"
+      height="1em"
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M14 8H9V15H14V21H7V28H14V43H21V28H33.0312C33.9561 28 34 28.0733 34 29V35C34 35.9267 33.9561 36 33.0312 36H26C26 39.866 29.1653 43 33.0312 43C38 43 41 41 41 36V29C41 24 37 21 32 21V16C32 10.7488 28.2409 8 23 8H22C21.4477 8 21 7.55228 21 7V5H14V8ZM24 21C24.5523 21 25 20.5523 25 20V16C25 15.0733 24.6711 15 24 15H21V20C21 20.5523 21.4477 21 22 21H24Z"
+        fill="currentColor"
+      />
+      <path
+        d="M41 10.5C41 12.433 39.433 14 37.5 14C36.5207 14 34 14 34 14C34 14 34 11.4537 34 10.5C34 8.567 35.567 7 37.5 7C39.433 7 41 8.567 41 10.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
