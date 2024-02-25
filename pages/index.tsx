@@ -46,17 +46,14 @@ const Home: CommonPage = () => {
           <h2 className="text-lg">Posts</h2>
         </Link>
         <div className="space-y-2">
-          {POSTS.slice()
-            .reverse()
-            .slice(0, 5)
-            .map((item) => (
-              <a key={item.title} className="group flex items-center gap-2" href={item.slug}>
-                <div className="text-sm opacity-80 transition-opacity group-hover:opacity-90">
-                  {item.time}
-                </div>
-                <div className="glow-link">{item.title}</div>
-              </a>
-            ))}
+          {POSTS.slice(0, 5).map((item) => (
+            <a key={item.title} className="group flex items-center gap-2" href={item.slug}>
+              <div className="text-sm opacity-80 transition-opacity group-hover:opacity-90">
+                {item.time}
+              </div>
+              <div className="glow-link">{item.title}</div>
+            </a>
+          ))}
           <Link
             href="/posts"
             className="tiny-underline text-sm opacity-75 transition-opacity glow-link hover:opacity-100"
