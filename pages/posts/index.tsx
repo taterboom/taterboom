@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import Link from "next/link"
 import Button from "../../components/Button"
 import type { CommonPage } from "../_app"
+import TinyBlogCard from "@/components/BlogCard"
 
 export type Post = {
   title: string
@@ -88,12 +89,10 @@ export const POSTS: Post[] = [
 
 const Index: CommonPage = () => {
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-4 max-w-2xl mx-auto">
       {POSTS.map((post) => (
         <li key={post.title}>
-          <Link key={post.title} href={post.slug} passHref>
-            <Button>{post.title}</Button>
-          </Link>
+          <TinyBlogCard post={post} />
         </li>
       ))}
     </ul>

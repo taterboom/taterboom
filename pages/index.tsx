@@ -12,10 +12,11 @@ import {
   TablerBrandBilibili,
   XhsIcon,
 } from "@/components/Icons"
+import TinyBlogCard from "@/components/BlogCard"
 
 const Home: CommonPage = () => {
   return (
-    <div className="w-full min-h-[90vh] max-w-3xl mx-auto pb-8">
+    <div className="w-full min-h-[90vh] max-w-2xl mx-auto pb-8">
       <div className="flex">
         <Logo width={100}></Logo>
         <div className="mt-5 ml-4">
@@ -47,12 +48,7 @@ const Home: CommonPage = () => {
         </Link>
         <div className="space-y-2">
           {POSTS.slice(0, 5).map((item) => (
-            <a key={item.title} className="group flex items-center gap-2" href={item.slug}>
-              <div className="text-sm opacity-80 transition-opacity group-hover:opacity-90">
-                {item.time}
-              </div>
-              <div className="glow-link">{item.title}</div>
-            </a>
+            <TinyBlogCard key={item.title} post={item} />
           ))}
           <Link
             href="/posts"
