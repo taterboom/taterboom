@@ -6,3 +6,11 @@
 article {
     padding-top: 0!important;
 }
+
+.nx-prose pre {
+    background-color: #15194511 !important;
+}
+
+.dark .nx-prose pre {
+    background-color: #151515 !important;
+}

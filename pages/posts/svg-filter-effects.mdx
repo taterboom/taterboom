@@ -4,6 +4,8 @@ title: SVG filter effects
 
 import Playground from "../../components/Playground"
 import Blockquote from "../../components/PostAssets/Blockquote"
+import SandpackPlayground from "../../components/SandpackPlayground"
+import { LogoString } from "../../components/Logo/Logo"
 
 ## feBlend
 
@@ -13,8 +15,15 @@ The `<feBlend>` SVG filter primitive composes two objects together ruled by a ce
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in) [in2](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in2) [mode](https://developer.mozilla.org/en-US/docs/Web/CSS/blend-mode)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#blend)" }}>
         <svg style={{height: 1}}>
             <filter id="blend">
@@ -25,7 +34,7 @@ The `<feBlend>` SVG filter primitive composes two objects together ruled by a ce
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feColorMatrix
 
@@ -35,8 +44,15 @@ The `<feColorMatrix>` SVG filter element changes colors based on a transformatio
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in) [type](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/type#for_the_fecolormatrix_element) [values](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/values#fecolormatrix)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#colorMatrix)" }}>
         <svg style={{height: 1}}>
             <filter id="colorMatrix">
@@ -48,7 +64,7 @@ The `<feColorMatrix>` SVG filter element changes colors based on a transformatio
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feComponentTransfer
 
@@ -63,8 +79,15 @@ The `<feComponentTransfer>` SVG filter primitive performs color-component-wise r
 
 More explanation can read the [W3C doc](https://www.w3.org/Graphics/SVG/IG/resources/svgprimer.html#feComponentTransfer)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#componentTransfer)" }}>
         <svg style={{height: 1}}>
             <filter id="componentTransfer">
@@ -80,7 +103,7 @@ More explanation can read the [W3C doc](https://www.w3.org/Graphics/SVG/IG/resou
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feComposite
 
@@ -90,8 +113,15 @@ The `<feComposite>` SVG filter primitive performs the combination of two input i
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in) [in2](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in2) [operator](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/operator#fecomposite) [k1](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/k1) k2 k3 k4
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#composite)" }}>
         <div style={{display: 'block', position: 'absolute', top: 0, left: 0, opacity: 0}}>
             <svg id="composite-rect">
@@ -100,14 +130,14 @@ The `<feComposite>` SVG filter primitive performs the combination of two input i
         </div>
         <svg style={{height: 1}}>
             <filter id="composite">
-                <feImage xlink:href="#composite-rect"/>
+                <feImage xlinkHref="#composite-rect"/>
                 <feComposite in="SourceGraphic" operator="in"/>
             </filter>
         </svg>
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feDiffuseLighting
 
@@ -119,8 +149,15 @@ The `<feDiffuseLighting>` SVG filter primitive lights an image using the alpha c
 
 **child elements**: `fePointLight` `feDistanceLight` `feSpotLight`
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#diffuseLighting)" }}>
         <svg style={{ height: 1 }}>
             <filter id="diffuseLighting">
@@ -132,10 +169,9 @@ The `<feDiffuseLighting>` SVG filter primitive lights an image using the alpha c
         </svg>
         <Logo />
     </div>
-
 }`}
+</SandpackPlayground>
 
-</Playground>
 
 ## feSpecularLighting
 
@@ -147,8 +183,15 @@ The `<feSpecularLighting>` SVG filter primitive lights a source graphic using th
 
 **child elements**: `fePointLight` `feDistanceLight` `feSpotLight`
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#specularLighting)" }}>
         <svg style={{ height: 1 }}>
             <filter id="specularLighting">
@@ -160,10 +203,8 @@ The `<feSpecularLighting>` SVG filter primitive lights a source graphic using th
         </svg>
         <Logo />
     </div>
-
 }`}
-
-</Playground>
+</SandpackPlayground>
 
 ## feDisplacementMap
 
@@ -175,8 +216,15 @@ The `<feDisplacementMap>` SVG filter primitive uses the pixel values from the im
 
 **child elements**: `fePointLight` `feDistanceLight` `feSpotLight`
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#displacementMap)" }}>
         <svg style={{ height: 1 }}>
             <filter id="displacementMap">
@@ -188,10 +236,8 @@ The `<feDisplacementMap>` SVG filter primitive uses the pixel values from the im
         </svg>
         <Logo />
     </div>
-
 }`}
-
-</Playground>
+</SandpackPlayground>
 
 ## feDropShadow
 
@@ -201,8 +247,15 @@ The SVG `<feDropShadow>` filter primitive creates a drop shadow of the input ima
 
 **props**: [dx](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dx#fedropshadow) [dy](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dy#fedropshadow) [stdDeviation](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stdDeviation) [flood-color](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/flood-color) [flood-opacity](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/flood-opacity)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#dropShadow)" }}>
         <svg style={{ height: 1 }}>
             <filter id="dropShadow">
@@ -211,10 +264,9 @@ The SVG `<feDropShadow>` filter primitive creates a drop shadow of the input ima
         </svg>
         <Logo />
     </div>
-
 }`}
+</SandpackPlayground>
 
-</Playground>
 
 ## feFlood
 
@@ -224,8 +276,15 @@ The `<feFlood>` SVG filter primitive fills the filter subregion with the color a
 
 **props**: [flood-color](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/flood-color) [flood-opacity](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/flood-opacity)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#flood)" }}>
         <svg style={{ height: 1 }}>
             <filter id="flood">
@@ -235,10 +294,8 @@ The `<feFlood>` SVG filter primitive fills the filter subregion with the color a
         </svg>
         <Logo />
     </div>
-
 }`}
-
-</Playground>
+</SandpackPlayground>
 
 ## feGaussianBlur
 
@@ -248,8 +305,15 @@ The `<feFlood>` SVG filter primitive fills the filter subregion with the color a
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in) [stdDeviation](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stdDeviation) [edgeMode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/edgeMode)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#gaussianBlur)" }}>
         <svg style={{ height: 1 }}>
             <filter id="gaussianBlur">
@@ -259,7 +323,7 @@ The `<feFlood>` SVG filter primitive fills the filter subregion with the color a
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feImage
 
@@ -269,18 +333,25 @@ The `<feFlood>` SVG filter primitive fills the filter subregion with the color a
 
 **props**: [xlink:href](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#image)" }}>
         <svg style={{ height: 1 }}>
             <filter id="image">
-                <feImage xlink:href="#gaussianBlur-logo"/>
+                <feImage xlinkHref="#gaussianBlur-logo"/>
             </filter>
         </svg>
         <Logo id="gaussianBlur-logo"/>
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feMerge
 
@@ -290,8 +361,15 @@ The `<feMerge>` SVG element allows filter effects to be applied concurrently ins
 
 **child elements**: [feMergeNode](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feMergeNode)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: "url(#merge)" }}>
         <svg style={{ height: 1 }}>
             <filter id="merge">
@@ -306,7 +384,7 @@ The `<feMerge>` SVG element allows filter effects to be applied concurrently ins
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feMorphology
 
@@ -316,8 +394,15 @@ The `<feMorphology>` SVG filter primitive is used to erode or dilate the input i
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in) [operator](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/operator#femorphology) [radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/radius)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div>
         <svg style={{ height: 1 }}>
             <filter id="morphology-dilate">
@@ -327,7 +412,7 @@ The `<feMorphology>` SVG filter primitive is used to erode or dilate the input i
         <Logo filter="url(#morphology-dilate)"/>
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feOffset
 
@@ -337,8 +422,15 @@ The `<feOffset>` SVG filter primitive allows to offset the input image. The inpu
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in) [dx](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dx#feoffset) [dy](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dy#feoffset)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: 'url(#offset)' }}>
         <svg style={{ height: 1 }}>
             <filter id="offset">
@@ -348,7 +440,7 @@ The `<feOffset>` SVG filter primitive allows to offset the input image. The inpu
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 ## feTile
 
@@ -358,8 +450,15 @@ The `<feTile>` SVG filter primitive allows to fill a target rectangle with a rep
 
 **props**: [in](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/in)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: 'url(#tile)' }}>
         <svg style={{ height: 1 }}>
             <filter id="tile">
@@ -369,7 +468,7 @@ The `<feTile>` SVG filter primitive allows to fill a target rectangle with a rep
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
 
 # feTurbulence
 
@@ -379,8 +478,15 @@ The `<feTile>` SVG filter primitive allows to fill a target rectangle with a rep
 
 **props**: [baseFrequency](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/baseFrequency) [numOctaves](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/numOctaves) [seed](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/seed) [stitchTiles](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stitchTiles) [type](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/type#for_the_feturbulence_element)
 
-<Playground className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackLayoutProps={{style: {"--sp-layout-height": "480px"}}}
+    SandpackCodeEditor
+    SandpackPreview
+    SandpackProviderProps={{appendFiles: {"Logo.tsx": LogoString}}}
+>
+  {`import Logo from "./Logo"
+  
+export default () => {
     return <div style={{ filter: 'url(#turbulence)' }}>
         <svg style={{ height: 1 }}>
             <filter id="turbulence">
@@ -391,4 +497,4 @@ The `<feTile>` SVG filter primitive allows to fill a target rectangle with a rep
         <Logo />
     </div>
 }`}
-</Playground>
+</SandpackPlayground>
