@@ -4,13 +4,7 @@ keywords: RoundedRectangle, border-radius, canvas
 description: We use fillRect to draw a Rectangle in canvas, but fillRect doesn't support rounded corners. How can we draw a RoundedRectangle in canvas just like the `border-radius` in CSS.
 ---
 
-import Playground from "../../components/Playground"
-import CodeEditor from "../../components/Playground/CodeEditor"
-import {
-  roundRectByArc,
-  roundRectByQuadraticCurve,
-  CanvasExample,
-} from "../../components/PostAssets/border-radius-in-canvas"
+import SandpackPlayground from "../../components/SandpackPlayground"
 
 We use `fillRect` to draw a Rectangle in canvas, but `fillRect` doesn't support rounded corners. How can we draw a RoundedRectangle in canvas just like the `border-radius` in CSS.
 
@@ -18,9 +12,84 @@ We use `fillRect` to draw a Rectangle in canvas, but `fillRect` doesn't support 
 
 Use `quadraticCurveTo` to draw rounded corner line.
 
-<CodeEditor
-  language="typescript"
-  code={`function roundRectByQuadraticCurve(
+<SandpackPlayground 
+  SandpackLayoutProps={{style: {"--sp-layout-height": "400px"}}}
+  SandpackCodeEditor
+  SandpackPreview
+  SandpackProviderProps={{
+  appendFiles: {
+    "Tips.tsx": `export default function Tips({ cssColor, canvasColor, value, onChange }: any) {
+  return (
+    <div className="flex absolute bottom-3 right-12 gap-4">
+      <button
+        className="flex gap-2 items-center !outline-none"
+        style={{ opacity: (value & 0b10) === 0b10 ? 1 : 0.5 }}
+        onClick={() => onChange(value ^ 0b10)}
+      >
+        <div className=" w-8 h-5 rounded" style={{ background: cssColor }}></div>
+        <div>CSS</div>
+      </button>
+      <button
+        className="flex gap-2 items-center !outline-none"
+        style={{ opacity: (value & 0b01) === 0b01 ? 1 : 0.5 }}
+        onClick={() => onChange(value ^ 0b01)}
+      >
+        <div className=" w-8 h-5 rounded" style={{ background: canvasColor }}></div>
+        <div>Canvas</div>
+      </button>
+    </div>
+  )
+}
+`,
+    "CanvasExample.tsx": `import React, { forwardRef, useState } from "react"
+import Tips from "./Tips"
+
+const CanvasExample = forwardRef<HTMLCanvasElement, any>(
+  ({ rectSize, borderRidus, borderSize, color }, ref) => {
+    const [visible, setVisible] = useState(0b11)
+    return (
+      <div
+        className="mx-auto pb-12 box-content"
+        style={{ position: "relative", zIndex: 1, width: rectSize, height: rectSize }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            zIndex: 0,
+            width: rectSize,
+            height: rectSize,
+            borderRadius: borderRidus,
+            border: \`\$\{borderSize\}px solid rgba(104, 216, 155, 0.7)\`,
+            visibility: (visible & 0b10) === 0b10 ? "visible" : "hidden",
+            boxSizing: "border-box",
+          }}
+        ></div>
+        <canvas
+          ref={ref}
+          width={rectSize}
+          height={rectSize}
+          style={{
+            visibility: (visible & 0b01) === 0b01 ? "visible" : "hidden",
+          }}
+        ></canvas>
+        <Tips
+          value={visible}
+          onChange={(v: any) => {
+            setVisible(v)
+          }}
+          cssColor="rgba(104, 216, 155, 0.7)"
+          canvasColor={color}
+        />
+      </div>
+    )
+  }
+)
+
+export default CanvasExample
+`,
+    "roundRectByQuadraticCurve.ts": {active: true, code: `export default function roundRectByQuadraticCurve(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
@@ -39,16 +108,15 @@ Use `quadraticCurveTo` to draw rounded corner line.
   ctx.lineTo(x, y + radius)
   ctx.quadraticCurveTo(x, y, x + radius, y)
   ctx.closePath()
-}`}
-/>
+}
+`
+  }}
+}}>
+{`import React from 'react'
+import CanvasExample from './CanvasExample'
+import roundRectByQuadraticCurve from './roundRectByQuadraticCurve'
 
-You can play with the example.
-
-<Playground
-  className="sm:!grid-cols-[1fr_332px]"
-  scope={{ roundRectByQuadraticCurve, CanvasExample }}
->
-  {`() => {
+export default () => {
     const rectSize = 300
     const borderSize = 4
     const borderRidus = 100 // set 150 to check the circle shape
@@ -70,15 +138,93 @@ You can play with the example.
         ctx.stroke()
     }, [])
     return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
-}`}
-</Playground>
+}
+`}
+</SandpackPlayground>
 
 ## Arc
 
 Use `arcTo` to draw rounded corner line.
 
-<CodeEditor
-  code={`function roundRectByArc(
+
+<SandpackPlayground 
+  SandpackLayoutProps={{style: {"--sp-layout-height": "400px"}}}
+  SandpackCodeEditor
+  SandpackPreview
+  SandpackProviderProps={{
+  appendFiles: {
+    "Tips.tsx": `export default function Tips({ cssColor, canvasColor, value, onChange }: any) {
+  return (
+    <div className="flex absolute bottom-3 right-12 gap-4">
+      <button
+        className="flex gap-2 items-center !outline-none"
+        style={{ opacity: (value & 0b10) === 0b10 ? 1 : 0.5 }}
+        onClick={() => onChange(value ^ 0b10)}
+      >
+        <div className=" w-8 h-5 rounded" style={{ background: cssColor }}></div>
+        <div>CSS</div>
+      </button>
+      <button
+        className="flex gap-2 items-center !outline-none"
+        style={{ opacity: (value & 0b01) === 0b01 ? 1 : 0.5 }}
+        onClick={() => onChange(value ^ 0b01)}
+      >
+        <div className=" w-8 h-5 rounded" style={{ background: canvasColor }}></div>
+        <div>Canvas</div>
+      </button>
+    </div>
+  )
+}
+`,
+    "CanvasExample.tsx": `import React, { forwardRef, useState } from "react"
+import Tips from "./Tips"
+
+const CanvasExample = forwardRef<HTMLCanvasElement, any>(
+  ({ rectSize, borderRidus, borderSize, color }, ref) => {
+    const [visible, setVisible] = useState(0b11)
+    return (
+      <div
+        className="mx-auto pb-12 box-content"
+        style={{ position: "relative", zIndex: 1, width: rectSize, height: rectSize }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            zIndex: 0,
+            width: rectSize,
+            height: rectSize,
+            borderRadius: borderRidus,
+            border: \`\$\{borderSize\}px solid rgba(104, 216, 155, 0.7)\`,
+            visibility: (visible & 0b10) === 0b10 ? "visible" : "hidden",
+            boxSizing: "border-box",
+          }}
+        ></div>
+        <canvas
+          ref={ref}
+          width={rectSize}
+          height={rectSize}
+          style={{
+            visibility: (visible & 0b01) === 0b01 ? "visible" : "hidden",
+          }}
+        ></canvas>
+        <Tips
+          value={visible}
+          onChange={(v: any) => {
+            setVisible(v)
+          }}
+          cssColor="rgba(104, 216, 155, 0.7)"
+          canvasColor={color}
+        />
+      </div>
+    )
+  }
+)
+
+export default CanvasExample
+`,
+    "roundRectByArc.ts": {active: true, code: `export default function roundRectByArc(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
@@ -93,13 +239,15 @@ Use `arcTo` to draw rounded corner line.
   ctx.arcTo(x, y + height, x, y, radius)
   ctx.arcTo(x, y, x + width, y, radius)
   ctx.closePath()
-}`}
-/>
+}
+`
+  }}
+}}>
+{`import React from 'react'
+import CanvasExample from './CanvasExample'
+import roundRectByArc from './roundRectByArc'
 
-You can play with the example.
-
-<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ roundRectByArc, CanvasExample }}>
-  {`() => {
+export default () => {
     const rectSize = 300
     const borderSize = 4
     const borderRidus = 100 // set 150 to check the circle shape
@@ -121,8 +269,9 @@ You can play with the example.
         ctx.stroke()
     }, [])
     return <CanvasExample ref={canvasRef} rectSize={rectSize} borderSize={borderSize} borderRidus={borderRidus} color={color}/>
-}`}
-</Playground>
+}
+`}
+</SandpackPlayground>
 
 ## Conclusion
 

@@ -33,7 +33,11 @@ export default function SandpackPlayground(
   const files = props.SandpackProviderProps?.files || {
     "App.tsx": {
       code: props.children as string,
-      active: true,
+      active: props.SandpackProviderProps?.appendFiles
+        ? !Object.values(props.SandpackProviderProps.appendFiles).some(
+            (item) => typeof item !== "string" && item.active
+          )
+        : true,
     },
     ...props.SandpackProviderProps?.appendFiles,
   }
