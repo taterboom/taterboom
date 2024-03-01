@@ -77,11 +77,19 @@ const Home: CommonPage = () => {
             <MdiTwitterCircle style={{ filter: `url(#goo)` }} />
             <span className="tiny-underline text-sm">Twitter</span>
           </Link>
-          <Link className="flex items-center gap-1 glow-link" href=".">
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="https://space.bilibili.com/10891731"
+            passHref
+          >
             <TablerBrandBilibili />
             <span className="tiny-underline text-sm">Bilibili</span>
           </Link>
-          <Link className="flex items-center gap-1 glow-link" href=".">
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="https://www.xiaohongshu.com/user/profile/60a1db900000000001000726"
+            passHref
+          >
             <XhsIcon />
             <span className="tiny-underline text-sm">XiaoHongShu</span>
           </Link>
