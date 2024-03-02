@@ -4,6 +4,7 @@ description: 本文将介绍向量的点积和叉积，以及如何利用它们�
 ---
 
 import CodeSandbox from "@/components/CodeSandbox"
+import SandpackPlayground from "../../components/SandpackPlayground"
 
 # 向量的点积和叉积及其运用
 
@@ -72,18 +73,388 @@ $$
 **前文提到的右侧菜单的三角感应区域**。
 
 其中有三个向量，分别是鼠标原点到鼠标当前位置的向量（蓝色），以及鼠标原点到二级菜单顶部和底部的两个向量（红色），通过比较这三个向量间的夹角，可以判断鼠标当前位置是否在三角形内部。
-
+{/* 
 <CodeSandbox
   src="https://codesandbox.io/embed/triangle-menu-hwk953?fontsize=14&hidenavigation=1&theme=dark&view=preview"
   title="triangle-menu"
-></CodeSandbox>
+></CodeSandbox> */}
+
+<SandpackPlayground
+  SandpackProviderProps={{
+    template: "vanilla",
+    files: {
+      "index.html": `<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <div class="menu-item">
+    <span class="menu-name">一级菜单</span>
+    <div class="menu-body">二级菜单</div>
+  </div>
+
+  <svg id="path-canvas" height="500px">
+    <path stroke="#f00" stroke-width="2px"></path>
+    <path stroke="#f00"></path>
+    <path stroke="#00f"></path>
+    <path fill="rgb(255 0 0 / 0.1)"></path>
+  </svg>
+
+  <script src="index.js">
+  </script>
+</body>
+
+</html>`,
+      "index.js": `import "./styles.css"
+const [v1Path, v2Path, v3Path, v4Path] = document.querySelectorAll('#path-canvas path')
+
+const nameRect = document.querySelector('.menu-name').getBoundingClientRect()
+const bodyRect = document.querySelector('.menu-body').getBoundingClientRect()
+
+const v1 = [bodyRect.left - nameRect.left, bodyRect.top - nameRect.top]
+const v2 = [bodyRect.left - nameRect.left, bodyRect.bottom - nameRect.top]
+let v3 = []
+
+
+function line(v, path) {
+  path.setAttribute('d', \`M 0 0 L \$\{v[0]\} \$\{v[1]\}\`)
+}
+
+line(v1, v1Path)
+line(v2, v2Path)
+v4Path.setAttribute('d', \`M 0 0 L \$\{v1[0]\} \${v1[1]\} L \$\{v2[0]\} \$\{v2[1]\} Z\`)
+v4Path.style.visibility = 'hidden'
+
+function cross(a, b) {
+  return a[0] * b[1] - a[1] * b[0]
+}
+
+function dot(a, b) {
+  return a[0] * b[0] + a[1] * b[1]
+}
+
+function length(a) {
+  return Math.sqrt(dot(a, a))
+}
+
+function theta(a, b) {
+  return Math.acos(dot(a,b) / (length(a) * length(b)));
+}
+
+const v1v2Theta = theta(v1, v2)
+
+function update() {
+  line(v3, v3Path)
+  v4Path.style.visibility = (theta(v1, v3) - v1v2Theta) * (theta(v2, v3) - v1v2Theta) >= 0 ? 'visible' : 'hidden'
+  // v4Path.style.visibility = cross(v1, v3) * cross(v2, v3) <= 0 ? 'visible' : 'hidden'
+}
+
+document.addEventListener('mousemove', e => {
+  v3 = [e.clientX - nameRect.left, e.clientY - nameRect.top]
+  update()
+})
+`,
+"styles.css": `body {
+  font-family: sans-serif;
+  padding: 50px;
+  margin: 0;
+}
+
+.menu-item {
+  display: flex;
+}
+
+.menu-name {
+  border: 1px solid rgb(0 0 0 / 0.3);
+  padding: 1rem;
+  height: fit-content;
+}
+
+.menu-body {
+  border: 1px solid rgb(0 0 0 / 0.3);
+  padding: 1rem;
+  height: 200px;
+}
+
+svg {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+`
+    }
+  }}
+  SandpackCodeEditor
+  SandpackPreview
+></SandpackPlayground>
 
 **计算坦克炮筒与玩家间的夹角。**
-
+{/* 
 <CodeSandbox
   src="https://codesandbox.io/embed/dot-and-cross-product-wj4ryw?fontsize=14&hidenavigation=1&theme=dark&view=preview"
   title="dot-and-cross-product"
-></CodeSandbox>
+></CodeSandbox> */}
+
+<SandpackPlayground
+  SandpackCodeEditor
+  SandpackPreview
+  SandpackProviderProps={{
+    template: "vanilla-ts",
+    customSetup: { 
+      dependencies: { 
+        "@types/three": "0.103.2",
+        "three": "0.110.0",
+      }
+    },
+    files: {
+      "index.html": `<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My first three.js app</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="index.ts"></script>
+  </body>
+</html>
+`,
+      "index.ts": `import * as THREE from "three";
+import { WEBGL } from "three/examples/jsm/WebGL";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { Line2 } from "three/examples/jsm/lines/Line2";
+import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
+import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
+
+const search = new URLSearchParams(location.search);
+const pageSettings = {
+  lookat: !!search.get("lookat")
+};
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setPixelRatio(window.devicePixelRatio || 2);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
+camera.position.set(2, 10, 7);
+camera.lookAt(new THREE.Vector3());
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+var direction = new THREE.Vector3(1, 1, 0);
+var length = 5;
+var color = 0xfff000;
+var arrowHelper = new THREE.ArrowHelper(
+  direction,
+  new THREE.Vector3(),
+  length,
+  color
+);
+scene.add(arrowHelper);
+
+const light = new THREE.AmbientLight(0xffffff);
+scene.add(light);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+scene.add(directionalLight);
+
+const radialGradientMaterial = new THREE.ShaderMaterial({
+  uniforms: {
+    radius: { value: 4.0 }
+  },
+  vertexShader: \`
+    varying vec3 vUv;
+    void main() {
+      vUv = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  \`,
+  fragmentShader: \`
+    varying vec3 vUv;
+    uniform float radius;
+
+    void main() {
+      float deg = sqrt(vUv.x * vUv.x + vUv.y * vUv.y);
+      gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0 - deg / radius);
+    }
+  \`,
+  transparent: true
+});
+const EnemyFieldOfView = new THREE.Mesh(
+  new THREE.CircleGeometry(4, 32, Math.PI, Math.PI),
+  radialGradientMaterial
+);
+EnemyFieldOfView.rotation.x = -Math.PI / 2;
+EnemyFieldOfView.position.y = -0.49;
+const enemyBody = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshStandardMaterial({ color: 0x28bea0 })
+);
+const enemyFace = new THREE.Mesh(
+  new THREE.CylinderGeometry(0.1, 0.1, 2, 32),
+  new THREE.MeshStandardMaterial({ color: 0x28a0be })
+);
+enemyFace.translateZ(1);
+enemyFace.rotateX(Math.PI / 2);
+const enemy = new THREE.Object3D();
+enemy.add(enemyBody);
+enemy.add(enemyFace);
+enemy.add(EnemyFieldOfView);
+scene.add(enemy);
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(18, 18),
+  new THREE.MeshStandardMaterial({
+    color: 0xeeeeee,
+    transparent: true,
+    opacity: 0.75
+  })
+);
+ground.rotateX(-Math.PI / 2);
+ground.position.y = -0.5;
+scene.add(ground);
+
+const mouseMarker = new THREE.Mesh(
+  new THREE.SphereGeometry(0.5, 32, 32),
+  new THREE.MeshStandardMaterial({ color: 0xbe3344 })
+);
+mouseMarker.position.set(0, 0, 5);
+scene.add(mouseMarker);
+
+const line = new Line2(
+  new LineGeometry(),
+  new LineMaterial({
+    color: 0x0000ff,
+    dashed: true,
+    dashSize: 0.2,
+    gapSize: 0.1,
+    linewidth: 4,
+    defines: {
+      USE_DASH: ""
+    }
+    // worldUnits: true,
+    // vertexColors: true,
+  })
+);
+scene.add(line);
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(Infinity, Infinity);
+
+function onMouseMove(event) {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+}
+window.addEventListener("mousemove", onMouseMove, false);
+
+function updateMouseMarker() {
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObject(ground);
+  if (intersects.length > 0) {
+    const intersectionPoint = intersects[0].point;
+    mouseMarker.position.set(intersectionPoint.x, 0, intersectionPoint.z);
+  }
+}
+
+function updateLine() {
+  line.visible = mouseMarker.visible;
+  // @ts-ignore
+  line.geometry.setPositions([
+    ...enemy.position.clone().setY(-0.5).toArray(),
+    ...mouseMarker.position.clone().setY(-0.5).toArray()
+  ]);
+  // @ts-ignore
+  line.material.resolution.set(window.innerWidth, window.innerHeight);
+  // line.geometry.setFromPoints([enemy.position, mouseMarker.position]);
+  line.computeLineDistances();
+}
+
+function updateEnemy() {
+  if (pageSettings.lookat) {
+    const mouseToEnemy = mouseMarker.position.clone().sub(enemy.position);
+    mouseToEnemy.y = 0;
+    // const enemyForward = new THREE.Vector3(0, 0, 1).applyQuaternion(enemy.quaternion);
+    const enemyForward = new THREE.Vector3(0, 0, 1);
+    const angle = calcAngle(enemyForward, mouseToEnemy);
+    // const normal = enemyForward.cross(mouseToEnemy)
+    const normal = enemyForward.cross(mouseToEnemy).normalize();
+    enemy.setRotationFromAxisAngle(normal, angle);
+  }
+}
+
+function calcAngle(v1: THREE.Vector3, v2: THREE.Vector3) {
+  return Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
+}
+
+const toDegree = (radian: number) => (radian * 180) / Math.PI;
+
+const GUI = document.createElement("div");
+GUI.style.cssText =
+  "position: absolute; top: 16px; left: 32px; color: #fff; font-size: 1rem; white-space: pre-wrap";
+document.body.appendChild(GUI);
+
+function updateGUI() {
+  const mouseToEnemy = mouseMarker.position.clone().sub(enemy.position);
+  mouseToEnemy.y = 0;
+  // const enemyForward = new THREE.Vector3(0, 0, 1).applyQuaternion(enemy.quaternion);
+  const enemyForward = new THREE.Vector3(0, 0, 1);
+  const angle = calcAngle(enemyForward, mouseToEnemy);
+  // const normal = enemyForward.cross(mouseToEnemy)
+  const normal = enemyForward.clone().cross(mouseToEnemy).normalize();
+  arrowHelper.setDirection(normal);
+  GUI.textContent = \`
+  点积：\$\{enemyForward.dot(mouseToEnemy).toFixed(1)\}
+  夹角：\$\{toDegree(angle).toFixed(1)\}°
+  旋转轴：\$\{normal.toArray().map((item) => item.toFixed(1))\}\`;
+}
+
+console.log(arrowHelper);
+
+function animate() {
+  requestAnimationFrame(animate);
+  updateMouseMarker();
+  updateLine();
+  updateEnemy();
+  updateGUI();
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+if (WEBGL.isWebGLAvailable()) {
+  animate();
+} else {
+  const warning = WEBGL.getWebGLErrorMessage();
+  document.getElementById("container").appendChild(warning);
+}
+`,
+
+    }
+  }}
+>
+</SandpackPlayground>
+
+
 
 这个例子中有两个向量：炮筒方向向量与坦克到玩家的方向向量。
 GUI 中不仅显示了两个向量的夹角，还显示了两个向量的旋转轴（黄色），也就是两个向量所在平面的法向量，可以看到旋转轴不是一直不变的，而这个旋转轴的计算就需要用到叉积了。
@@ -116,10 +487,225 @@ $$
 
 红色箭头代表红色与蓝色直线所在平面的法向量，绿色箭头代表绿色和蓝色直线所在平面的法向量，黄色箭头代表红色向量与绿色向量的叉积，也就是这两个向量坐在平面的法向量。
 
-<CodeSandbox
+{/* <CodeSandbox
   src="https://codesandbox.io/embed/cross-product-zcfnm6?fontsize=14&hidenavigation=1&theme=dark&view=preview"
   title="cross-product"
-/>
+/> */}
+<SandpackPlayground
+  SandpackCodeEditor
+  SandpackPreview
+  SandpackProviderProps={{
+    template: "vanilla-ts",
+    dependencies: {
+      "@types/three": "0.103.2",
+      "three": "0.110.0",
+    },
+    files: {
+      "index.html": `<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My first three.js app</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="index.ts"></script>
+  </body>
+</html>
+`,
+      "index.ts": `import * as THREE from "three";
+import { WEBGL } from "three/examples/jsm/WebGL";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { Line2 } from "three/examples/jsm/lines/Line2";
+import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
+import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
+console.log(new THREE.Vector3(0, 1, 0).dot(new THREE.Vector3(0, -1, 0)));
+const renderer = new THREE.WebGLRenderer();
+renderer.setPixelRatio(window.devicePixelRatio || 2);
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
+camera.position.set(2, 10, 7);
+camera.lookAt(new THREE.Vector3());
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+const arrowHelperA = new THREE.ArrowHelper(
+  new THREE.Vector3(0, 0, 0),
+  new THREE.Vector3(0, 0, 0),
+  7,
+  0xff0000
+);
+scene.add(arrowHelperA);
+const arrowHelperB = new THREE.ArrowHelper(
+  new THREE.Vector3(0, 0, 0),
+  new THREE.Vector3(0, 0, 0),
+  5,
+  0x00ff00
+);
+scene.add(arrowHelperB);
+
+const light = new THREE.AmbientLight(0xffffff);
+scene.add(light);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+scene.add(directionalLight);
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(18, 18),
+  new THREE.MeshStandardMaterial({
+    color: 0xeeeeee,
+    transparent: true,
+    opacity: 0.3
+  })
+);
+ground.rotateX(-Math.PI / 2);
+scene.add(ground);
+
+const mouseMarker = new THREE.Mesh(
+  new THREE.SphereGeometry(0.5, 32, 32),
+  new THREE.MeshStandardMaterial({ color: 0xbe3344 })
+);
+mouseMarker.position.set(0, 0, 5);
+scene.add(mouseMarker);
+
+const line = new Line2(
+  new LineGeometry(),
+  new LineMaterial({
+    color: 0x0000ff,
+    linewidth: 4
+  })
+);
+// @ts-ignore
+line.material.resolution.set(window.innerWidth, window.innerHeight);
+scene.add(line);
+const vecA = new THREE.Vector3(1, 0, 5);
+const lineA = new Line2(
+  new LineGeometry().setPositions([0, 0, 0, ...vecA.toArray()]),
+  new LineMaterial({
+    color: 0xff0000,
+    linewidth: 4
+  })
+);
+// @ts-ignore
+lineA.material.resolution.set(window.innerWidth, window.innerHeight);
+scene.add(lineA);
+const vecB = new THREE.Vector3(5, 0, 1);
+const lineB = new Line2(
+  new LineGeometry().setPositions([0, 0, 0, ...vecB.toArray()]),
+  new LineMaterial({
+    color: 0x00ff00,
+    linewidth: 4
+  })
+);
+// @ts-ignore
+lineB.material.resolution.set(window.innerWidth, window.innerHeight);
+scene.add(lineB);
+
+const arrowHelperC = new THREE.ArrowHelper(
+  new THREE.Vector3(0, 0, 0),
+  new THREE.Vector3(0, 0, 0),
+  3,
+  0xffff00
+);
+arrowHelperC.setDirection(vecA.clone().cross(vecB));
+// arrowHelperC.setDirection(vecB.clone().cross(vecA));
+scene.add(arrowHelperC);
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2(Infinity, Infinity);
+
+function onMouseMove(event) {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+}
+window.addEventListener("mousemove", onMouseMove, false);
+
+function updateMouseMarker() {
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObject(ground);
+  if (intersects.length > 0) {
+    const intersectionPoint = intersects[0].point;
+    mouseMarker.position.set(intersectionPoint.x, 0, intersectionPoint.z);
+  }
+}
+
+function updateLine() {
+  line.visible = mouseMarker.visible;
+  // @ts-ignore
+  line.geometry.setPositions([
+    ...new THREE.Vector3().toArray(),
+    ...mouseMarker.position.clone().toArray()
+  ]);
+  // line.geometry.setFromPoints([enemy.position, mouseMarker.position]);
+  line.computeLineDistances();
+}
+
+function calcAngle(v1: THREE.Vector3, v2: THREE.Vector3) {
+  return Math.acos(v1.dot(v2) / (v1.length() * v2.length()));
+}
+
+const toDegree = (radian: number) => (radian * 180) / Math.PI;
+
+const GUI = document.createElement("div");
+GUI.style.cssText =
+  "position: absolute; top: 16px; left: 32px; color: #fff; font-size: 1rem; white-space: pre-wrap";
+document.body.appendChild(GUI);
+
+function updateGUI() {
+  // const mouseToEnemy = mouseMarker.position.clone().sub(new THREE.Vector3());
+  // mouseToEnemy.y = 0;
+  // // const enemyForward = new THREE.Vector3(0, 0, 1).applyQuaternion(enemy.quaternion);
+  // const enemyForward = new THREE.Vector3(0, 0, 1);
+  // const angle = calcAngle(enemyForward, mouseToEnemy);
+  // // const normal = enemyForward.cross(mouseToEnemy)
+  // const normal = enemyForward.clone().cross(mouseToEnemy).normalize();
+  // GUI.textContent =
+
+  const normalA = vecA.clone().cross(mouseMarker.position);
+  const normalB = vecB.clone().cross(mouseMarker.position);
+  arrowHelperA.setDirection(normalA);
+  arrowHelperB.setDirection(normalB);
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  updateMouseMarker();
+  updateLine();
+  updateGUI();
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+if (WEBGL.isWebGLAvailable()) {
+  animate();
+} else {
+  const warning = WEBGL.getWebGLErrorMessage();
+  document.getElementById("container").appendChild(warning);
+}
+`,
+    },
+  }}
+>
+</SandpackPlayground>
+
 
 移动蓝线可以看到，当蓝色向量在红绿两个向量间或者在红绿向量反向的向量间时，两个法向量方向是相反的，除此以外两个法向量的方向是相同的。再通过判断红色法向量是否与黄色法向量同向，来最终确定蓝色向量向量是否在红绿两个向量间。
 

@@ -2,14 +2,26 @@
 title: SVG filter effects examples
 ---
 
-import Playground from "../../components/Playground"
+import SandpackPlayground from "../../components/SandpackPlayground"
 import gsap from "gsap"
 
 ## Flame
 
-<Playground scope={{ gsap }} className="sm:!grid-cols-[1fr_332px]">
-  {`() => {
+<SandpackPlayground
+    SandpackProviderProps={{
+        customSetup: {
+            dependencies: {
+                "gsap": "3.9.1",
+            },
+        }
+    }}
+    SandpackCodeEditor
+    SandpackPreview
+>
+{`import gsap from "gsap"
+import { useEffect } from "react"
 
+export default () => {
     useEffect(() => {
         const feTurbulence = document.querySelector('#e-turbulence > feTurbulence')
         const feDisplacementMap = document.querySelector('#e-turbulence > feDisplacementMap')
@@ -33,17 +45,29 @@ import gsap from "gsap"
                 <feDisplacementMap xChannelSelector="R" yChannelSelector="G" result="fe-displacement-map" scale="16" in="SourceGraphic"/>
             </filter>
         </svg>
-        <img src="/fire.webp" alt="" style={{ filter: "url(#e-turbulence)", margin: -16, maxWidth: 'unset'}} width="332" height="232"/>
+        <img src="https://taterboom.com/assets/posts/svg-filter-effects/fire.webp" alt="" style={{ filter: "url(#e-turbulence)", margin: -16, maxWidth: 'unset'}} width="332" height="232"/>
     </div>
-
-}`}
-
-</Playground>
+}
+`}
+</SandpackPlayground>
 
 ## Gooey
 
-<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ gsap }}>
-  {`() => {
+<SandpackPlayground
+    SandpackProviderProps={{
+        customSetup: {
+            dependencies: {
+                "gsap": "3.9.1",
+            },
+        }
+    }}
+    SandpackCodeEditor
+    SandpackPreview
+>
+{`import gsap from "gsap"
+import { useEffect } from "react"
+
+export default () => {
     useEffect(() => {
         gsap.to(document.querySelector('#up'), {
             y: -30,
@@ -70,13 +94,17 @@ import gsap from "gsap"
         <div id="up" style={{ width: 128, height: 128, background: 'red', borderRadius: 999}}></div>
         <div id="down" style={{ width: 128, height: 128, background: 'green', borderRadius: 999, marginTop: -40}}></div>
     </div>
-}`}
-</Playground>
+}
+`}
+</SandpackPlayground>
 
 ## Light and Shadow
 
-<Playground className="sm:!grid-cols-[1fr_332px]" scope={{ gsap }}>
-  {`() => {
+<SandpackPlayground
+    SandpackCodeEditor
+    SandpackPreview
+>
+{`export default () => {
     return <div>
         <svg style={{ height: 1 }}>
             <filter id="felight">
@@ -93,12 +121,11 @@ import gsap from "gsap"
                 {/* not <feBlend in2="SourceGraphic" mode="multiply" /> */}
             </filter>
         </svg>
-        <img style={{ filter: "url(#felight)" }} src="/assets/posts/svg-filter-effects/stoneroad.jpeg" width="332" height="232" onMouseMove={e => {
+        <img style={{ filter: "url(#felight)" }} src="https://taterboom.com/assets/posts/svg-filter-effects/stoneroad.jpeg" width="332" height="232" onMouseMove={e => {
             document.querySelector('#felight fePointLight').setAttribute('x', e.nativeEvent.offsetX)
             document.querySelector('#felight fePointLight').setAttribute('y', e.nativeEvent.offsetY)
         }}/>
     </div>
-
-}`}
-
-</Playground>
+}
+`}
+</SandpackPlayground>

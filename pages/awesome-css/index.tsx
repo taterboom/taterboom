@@ -17,7 +17,6 @@ const Items: ItemConfig[] = [
   {
     Component: GlowDisplay,
     label: "Glow",
-    link: `${PATH_PREFIX}/glow`,
   },
   {
     Component: NeumorphismDisplay,
@@ -26,8 +25,7 @@ const Items: ItemConfig[] = [
   },
   {
     Component: MaskDisplay,
-    label: "Mask",
-    link: `${PATH_PREFIX}/mask`,
+    label: "Mask (works in dark mode)",
   },
   {
     Component: AreaLightDisplay,

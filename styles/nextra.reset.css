@@ -1,8 +1,16 @@
 @media (min-width: 768px) {
-    .md\:nx-prose {
-        max-width: 128ch !important;
+    .nx-prose {
+        max-width: 75ch !important;
     }
 }
 article {
     padding-top: 0!important;
+}
+
+.nx-prose pre {
+    background-color: #15194511 !important;
+}
+
+.dark .nx-prose pre {
+    background-color: #151515 !important;
 }

@@ -1,136 +1,110 @@
-import { animated, easings, useSpring } from "react-spring"
-import TurbulenceLogo from "../components/Logo/TurbulenceLogo"
-import type { CommonPage } from "./_app"
+import Logo from "@/components/Logo/Logo"
+import { CommonPage } from "./_app"
+import { PROJECTS } from "./projects"
+import { TinyProjectCard } from "@/components/ProjectCard"
+import { POSTS } from "./posts"
 import Link from "next/link"
-import Button from "../components/Button"
-import { MdiEmail, MdiGithub, MdiTwitterCircle } from "../components/Icons"
-import Nav from "../components/Nav"
+import Button from "@/components/Button"
+import {
+  MdiEmail,
+  MdiGithub,
+  MdiTwitterCircle,
+  TablerBrandBilibili,
+  XhsIcon,
+} from "@/components/Icons"
+import TinyBlogCard from "@/components/BlogCard"
 
-const AnimatedFeGussianblur = animated((props) => <feGaussianBlur {...props} />)
-
-const SocialMedia = () => {
-  const attrs = useSpring({
-    from: {
-      stdDeviation: 2.5,
-    },
-    to: {
-      stdDeviation: 1,
-    },
-    delay: 1300,
-    config: {
-      duration: 1000,
-      easing: easings.easeOutCubic,
-    },
-  })
-  const styles = useSpring({
-    from: { y: -24, opacity: 0 },
-    to: { y: 0, opacity: 1 },
-    delay: 1200,
-    config: {
-      duration: 600,
-      easing: easings.easeOutQuad,
-    },
-  })
+const Home: CommonPage = () => {
   return (
-    <animated.div className="flex justify-center items-center text-3xl" style={styles}>
-      <svg className="hidden">
-        <filter id="goo">
-          <AnimatedFeGussianblur {...attrs} />
-          <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 4 -1" />
-        </filter>
-      </svg>
-      <Link href="https://github.com/taterboom" passHref>
-        <Button type="rounded">
-          <MdiGithub style={{ filter: `url(#goo)` }} />
-        </Button>
-      </Link>
-      <Link href="https://twitter.com/didan64037534" passHref>
-        <Button type="rounded">
-          <MdiTwitterCircle style={{ filter: `url(#goo)` }} />
-        </Button>
-      </Link>
-      <Link href="mailto:xuebagod@gmail.com" passHref>
-        <Button type="rounded">
-          <MdiEmail style={{ filter: `url(#goo)` }} />
-        </Button>
-      </Link>
-    </animated.div>
-  )
-}
-
-const Nickname = () => {
-  const styles = useSpring({
-    from: { y: -24, opacity: 0 },
-    to: { y: 0, opacity: 1 },
-    delay: 800,
-    config: {
-      duration: 600,
-      easing: easings.easeOutQuad,
-    },
-  })
-  return (
-    <>
-      <animated.h1
-        className="text-2xl font-bold logo-gradient bg-clip-text text-transparent"
-        style={styles}
-      >
-        TaterBoom
-      </animated.h1>
-    </>
-  )
-}
-
-const AnimatedTurbulenceLogo = animated((props) => (
-  <TurbulenceLogo
-    className=" w-[375px] h-[375px] sm:w-[512px] sm:h-[512px]"
-    style={props.style}
-  ></TurbulenceLogo>
-))
-
-const AnimatedLogo = () => {
-  const styles = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: {
-      duration: 300,
-      easing: easings.easeOutQuad,
-    },
-  })
-  return <AnimatedTurbulenceLogo style={styles} />
-}
-
-const Stage = () => {
-  const styles = useSpring({
-    from: { y: -24, opacity: 0 },
-    to: { y: 0, opacity: 1 },
-    delay: 1000,
-    config: {
-      duration: 600,
-      easing: easings.easeOutQuad,
-    },
-  })
-  return (
-    <animated.div className="flex justify-center" style={styles}>
-      <Nav></Nav>
-    </animated.div>
-  )
-}
-
-const Index: CommonPage = () => {
-  return (
-    <div className="w-full min-h-[90vh] flex flex-col items-center justify-center">
-      <AnimatedLogo />
-      <Nickname />
-      <div className="mt-8">
-        <Stage></Stage>
+    <div className="w-full min-h-[90vh] max-w-2xl mx-auto pb-8">
+      <div className="flex">
+        <Logo width={100}></Logo>
+        <div className="mt-5 ml-4">
+          <h1 className="text-xl font-bold logo-gradient bg-clip-text text-transparent">
+            TaterBoom
+          </h1>
+          <p className="mt-1.5 opacity-80">A web developer, game developer and a trader.</p>
+        </div>
       </div>
-      <div className="mt-8">
-        <SocialMedia></SocialMedia>
-      </div>
+      <section className="mt-4 p-3.5 space-y-4">
+        <Link href="/projects" className="glow-link">
+          <h2 className="text-lg ">Projects</h2>
+        </Link>
+        <div className="space-y-5">
+          {PROJECTS.slice(0, 3).map((item) => (
+            <TinyProjectCard key={item.title} project={item}></TinyProjectCard>
+          ))}
+          <Link
+            href="/projects"
+            className="tiny-underline text-sm opacity-75 transition-opacity glow-link hover:opacity-100"
+          >
+            more...
+          </Link>
+        </div>
+      </section>
+      <section className="mt-4 p-3.5 space-y-4">
+        <Link href="/posts" className="glow-link">
+          <h2 className="text-lg">Posts</h2>
+        </Link>
+        <div className="space-y-2">
+          {POSTS.slice(0, 5).map((item) => (
+            <TinyBlogCard key={item.title} post={item} />
+          ))}
+          <Link
+            href="/posts"
+            className="tiny-underline text-sm opacity-75 transition-opacity glow-link hover:opacity-100"
+          >
+            more...
+          </Link>
+        </div>
+      </section>
+      <section className="mt-4 p-3.5 space-y-4">
+        <h2 className="text-lg">Find me on</h2>
+        <div className="flex gap-2">
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="https://github.com/taterboom"
+            passHref
+          >
+            <MdiGithub style={{ filter: `url(#goo)` }} />
+            <span className="tiny-underline text-sm">Github</span>
+          </Link>
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="https://twitter.com/didan64037534"
+            passHref
+          >
+            <MdiTwitterCircle style={{ filter: `url(#goo)` }} />
+            <span className="tiny-underline text-sm">Twitter</span>
+          </Link>
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="https://space.bilibili.com/10891731"
+            passHref
+          >
+            <TablerBrandBilibili />
+            <span className="tiny-underline text-sm">Bilibili</span>
+          </Link>
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="https://www.xiaohongshu.com/user/profile/60a1db900000000001000726"
+            passHref
+          >
+            <XhsIcon />
+            <span className="tiny-underline text-sm">XiaoHongShu</span>
+          </Link>
+          <Link
+            className="flex items-center gap-1 glow-link"
+            href="mailto:xuebagod@gmail.com"
+            passHref
+          >
+            <MdiEmail style={{ filter: `url(#goo)` }} />
+            <span className="tiny-underline text-sm">Mail</span>
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }
 
-Index.custom = true
-
-export default Index
+export default Home
