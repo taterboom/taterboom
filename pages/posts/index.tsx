@@ -85,6 +85,11 @@ export const POSTS: Post[] = [
     slug: "/posts/change-text-in-contenteditable",
     time: "2024-01-08",
   },
+  {
+    title: "复盘 PromptSnippets",
+    slug: "/posts/review-prompt-snippets",
+    time: "2024-02-29",
+  },
 ].reverse()
 
 const Index: CommonPage = () => {
