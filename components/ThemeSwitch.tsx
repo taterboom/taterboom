@@ -1,3 +1,5 @@
+"use client"
+
 import { useTheme } from "next-themes"
 import Button from "./Button"
 import { MaterialSymbolsDarkMode, MaterialSymbolsLightMode } from "./Icons"

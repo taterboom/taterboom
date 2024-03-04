@@ -1,7 +1,4 @@
 import Link from "next/link"
-import Button from "../../components/Button"
-import type { CommonPage } from "../_app"
-import Image from "next/image"
 import { ProjectCard } from "@/components/ProjectCard"
 
 export type Project = {
@@ -17,22 +14,6 @@ export type Project = {
 const ASSETS_PATH = "/assets/projects"
 
 export const PROJECTS: Project[] = [
-  // {
-  //   title: "ChatSwaggerType",
-  //   slug: "https://chrome.google.com/webstore/detail/chatswaggertype/lkminimpgnlpggmkanlhiahjafjnllfk",
-  // },
-  // {
-  //   title: "DaiDai",
-  //   slug: "https://chrome.google.com/webstore/detail/daidai/khcaoeekfbjiiipcjpegbniimnmomafo",
-  // },
-  // {
-  //   title: "Rect Stroke",
-  //   slug: "/projects/rect-stroke",
-  // },
-  // {
-  //   title: "Props Break",
-  //   slug: "/projects/props-break",
-  // },
   {
     title: "PromptSnippets",
     slug: "https://promptsnippets.taterboom.com",
@@ -92,7 +73,7 @@ export const PROJECTS: Project[] = [
   },
 ]
 
-const Index: CommonPage = () => {
+const Projects = () => {
   return (
     <ul className="grid gap-8 grid-cols-1 md:grid-cols-2 pb-16">
       {PROJECTS.map((item) => (
@@ -106,4 +87,4 @@ const Index: CommonPage = () => {
   )
 }
 
-export default Index
+export default Projects

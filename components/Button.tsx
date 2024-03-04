@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useMemo, useRef, useState } from "react"
 import clsx from "classnames"
 import { useManualTimeout } from "./hooks/useManualTimeout"
