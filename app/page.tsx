@@ -1,5 +1,5 @@
 import Logo from "@/components/Logo/Logo"
-import { PROJECTS } from "./projects/page"
+import { PROJECTS } from "./projects/data"
 import { TinyProjectCard } from "@/components/ProjectCard"
 import { POSTS } from "@/pages/posts"
 import Link from "next/link"

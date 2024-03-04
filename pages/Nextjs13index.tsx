@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo/Logo"
 import { CommonPage } from "./_app"
-import { PROJECTS } from "@/app/projects/page"
+import { PROJECTS } from "@/app/projects/data"
 import { TinyProjectCard } from "@/components/ProjectCard"
 import { POSTS } from "./posts"
 import Link from "next/link"
