@@ -36,6 +36,14 @@ export const PROJECTS: Project[] = [
     color: "#78DCA9",
   },
   {
+    title: "tab-controller",
+    slug: "https://chrome.google.com/webstore/detail/tab-controller/bnampjhjfnfghiclahecmdkbmiebhfbo",
+    desc: "A Chrome extension for easy tab movement",
+    logo: ASSETS_PATH + "/tab-controller-logo-128.png",
+    cover: ASSETS_PATH + "/tab-controller-cover.png",
+    color: "#FD4CC6",
+  },
+  {
     title: "CompositeX",
     slug: "https://compositex.taterboom.com",
     desc: "A Chrome extension lets you easily build automation workflows",
@@ -66,13 +74,5 @@ export const PROJECTS: Project[] = [
     logo: ASSETS_PATH + "/rrcrop-logo.png",
     cover: ASSETS_PATH + "/rrcrop-cover.png",
     color: "#EA6827",
-  },
-  {
-    title: "tab-controller",
-    slug: "https://chrome.google.com/webstore/detail/tab-controller/bnampjhjfnfghiclahecmdkbmiebhfbo",
-    desc: "A Chrome extension for easy tab movement",
-    logo: ASSETS_PATH + "/tab-controller-logo-128.png",
-    cover: ASSETS_PATH + "/tab-controller-cover.png",
-    color: "#FD4CC6",
   },
 ]
