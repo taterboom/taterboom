@@ -27,7 +27,14 @@ export const PROJECTS: Project[] = [
     cover: ASSETS_PATH + "/awesome-export-cover.png",
     color: "#FE6C31",
   },
-
+  {
+    title: "BabyRun",
+    slug: "https://taterboom.itch.io/baby-run",
+    desc: "A baby girl learns to run.",
+    logo: ASSETS_PATH + "/babyrun-logo.png",
+    cover: ASSETS_PATH + "/babyrun-cover.png",
+    color: "#78DCA9",
+  },
   {
     title: "CompositeX",
     slug: "https://compositex.taterboom.com",
