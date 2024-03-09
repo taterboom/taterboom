@@ -2,12 +2,13 @@
 
 import Link from "next/link"
 import Button from "../../components/Button"
-import GlowDisplay from "../../components/awesome-css/Glow/GlowDisplay"
-import NeumorphismDisplay from "../../components/awesome-css/Neumorphism/NeumorphismDisplay"
-import MaskDisplay from "../../components/awesome-css/Mask/MaskDisplay"
-import AreaLightDisplay from "@/components/awesome-css/AreaLight/AreaLightDisplay"
+import GlowDisplay from "../../components/misc/Glow/GlowDisplay"
+import NeumorphismDisplay from "../../components/misc/Neumorphism/NeumorphismDisplay"
+import MaskDisplay from "../../components/misc/Mask/MaskDisplay"
+import AreaLightDisplay from "@/components/misc/AreaLight/AreaLightDisplay"
+import Image from "next/image"
 
-const PATH_PREFIX = "/awesome-css"
+const PATH_PREFIX = "/misc"
 
 type ItemConfig = {
   Component: React.ComponentType<any>
@@ -16,6 +17,20 @@ type ItemConfig = {
 }
 
 const Items: ItemConfig[] = [
+  {
+    Component: () => (
+      <div className="flex justify-center items-center">
+        <Image
+          src="/assets/misc/apple-audio-visualization-cover.png"
+          width={528}
+          height={240}
+          alt=""
+        />
+      </div>
+    ),
+    label: "Apple Audio Visualization",
+    link: "https://apple-audio-visualization.vercel.app/remotion",
+  },
   {
     Component: GlowDisplay,
     label: "Glow",

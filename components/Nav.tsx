@@ -11,8 +11,8 @@ const Nav = () => {
       <Link href="/projects">
         <Button>Projects</Button>
       </Link>
-      <Link href="/awesome-css">
-        <Button>AwesomeCSS</Button>
+      <Link href="/misc">
+        <Button>Misc</Button>
       </Link>
       <ThemeSwitch></ThemeSwitch>
     </nav>
