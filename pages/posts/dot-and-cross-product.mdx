@@ -496,9 +496,11 @@ $$
   SandpackPreview
   SandpackProviderProps={{
     template: "vanilla-ts",
-    dependencies: {
-      "@types/three": "0.103.2",
-      "three": "0.110.0",
+    customSetup: { 
+      dependencies: {
+        "@types/three": "0.103.2",
+        "three": "0.110.0",
+      },
     },
     files: {
       "index.html": `<html>
