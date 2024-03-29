@@ -12,7 +12,7 @@ const ASSETS_PATH = "/assets/projects"
 
 export const PROJECTS: Project[] = [
   {
-    title: "🚧[Developing] Sing Along Nihongo",
+    title: "🚧[WIP] Sing Along Nihongo",
     slug: "https://www.bilibili.com/video/BV1Sm411d7gu/?share_source=copy_web&vd_source=5cdbbc0bb09641dbaa07c04b115ecaf8",
     desc: "Use ChatGPT to read nihongo song lyrics, and you can sing along with it. Powered by ChatGPT and Remotion.",
     logo: ASSETS_PATH + "/sing-along-nihongo-logo.png",
