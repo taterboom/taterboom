@@ -7,6 +7,7 @@ import NeumorphismDisplay from "../../components/misc/Neumorphism/NeumorphismDis
 import MaskDisplay from "../../components/misc/Mask/MaskDisplay"
 import AreaLightDisplay from "@/components/misc/AreaLight/AreaLightDisplay"
 import Image from "next/image"
+import Grid from "./grid/page"
 
 const PATH_PREFIX = "/misc"
 
@@ -47,6 +48,11 @@ const Items: ItemConfig[] = [
   {
     Component: AreaLightDisplay,
     label: "Area Light",
+  },
+  {
+    Component: Grid,
+    label: "Responsive Grid Layout",
+    link: `${PATH_PREFIX}/grid`,
   },
 ]
 
