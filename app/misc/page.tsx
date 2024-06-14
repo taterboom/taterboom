@@ -8,6 +8,7 @@ import MaskDisplay from "../../components/misc/Mask/MaskDisplay"
 import AreaLightDisplay from "@/components/misc/AreaLight/AreaLightDisplay"
 import Image from "next/image"
 import Grid from "./grid/page"
+import TourKit from "@/components/misc/TourKit"
 
 const PATH_PREFIX = "/misc"
 
@@ -53,6 +54,10 @@ const Items: ItemConfig[] = [
     Component: Grid,
     label: "Responsive Grid Layout",
     link: `${PATH_PREFIX}/grid`,
+  },
+  {
+    Component: TourKit,
+    label: "inspired by Wordpress Tour Kit",
   },
 ]
 
