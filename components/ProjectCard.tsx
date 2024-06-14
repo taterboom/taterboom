@@ -4,7 +4,7 @@ import Image from "next/image"
 export function TinyProjectCard(props: { project: Project }) {
   return (
     <a className="flex gap-4 items-center" href={props.project.slug} target="_blank">
-      <div>
+      <div className="flex-shrink-0">
         <Image className="object-contain" src={props.project.logo} alt="" width={44} height={44} />
       </div>
       <div>

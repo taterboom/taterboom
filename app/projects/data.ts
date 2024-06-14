@@ -12,6 +12,14 @@ const ASSETS_PATH = "/assets/projects"
 
 export const PROJECTS: Project[] = [
   {
+    title: "🚧[WIP] KanaNinja",
+    slug: "https://kananinja.com",
+    desc: "Master Japanese Word by Word.",
+    logo: ASSETS_PATH + "/kananinja-logo.png",
+    cover: ASSETS_PATH + "/kananinja-logo.png",
+    color: "#AFD056",
+  },
+  {
     title: "🚧[WIP] Sing Along Nihongo",
     slug: "https://www.bilibili.com/video/BV1Sm411d7gu/?share_source=copy_web&vd_source=5cdbbc0bb09641dbaa07c04b115ecaf8",
     desc: "Use ChatGPT to read nihongo song lyrics, and you can sing along with it. Powered by ChatGPT and Remotion.",
