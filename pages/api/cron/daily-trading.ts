@@ -101,12 +101,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   //   block_id: blockId,
   // })
   console.log(data)
-  try {
-    const title = "Daily Trading"
-    const body = generateBody(data)
-    await mailer(title, body)
-  } catch (err) {
-    console.log(err)
-  }
+  // 暂时先不发邮件了，暂时不搞A股
+  // try {
+  //   const title = "Daily Trading"
+  //   const body = generateBody(data)
+  //   await mailer(title, body)
+  // } catch (err) {
+  //   console.log(err)
+  // }
   res.status(200).json({ data, html: generateBody(data) })
 }
