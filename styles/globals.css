@@ -92,7 +92,7 @@ h3 { font-size: 15px; line-height: 1.5; font-weight: 550; letter-spacing: -.2px;
   .social-links svg { width: 18px; height: 18px; }
   .projects { margin-top: 24px; }
   .project-list { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .project { padding: 16px 2px; gap: 20px; }
+  .project { padding: 16px 12px; gap: 16px; }
   .project-icon img { width: 44px; height: 44px; }
   .project-copy p { max-width: 330px; }
 }
