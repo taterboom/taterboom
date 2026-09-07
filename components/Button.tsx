@@ -5,7 +5,6 @@ import clsx from "classnames"
 import { useManualTimeout } from "./hooks/useManualTimeout"
 import { ClaritySuccessLine, MaterialSymbolsContentCopy } from "./Icons"
 import Link from "next/link"
-import { omit } from "lodash"
 
 type ButtonProps = Omit<
   React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
@@ -32,7 +31,12 @@ const Button = ({ type = "text", className, children, ...restProps }: ButtonProp
   )
 }
 
-export const CopyButton = (props: ButtonProps & { text?: string }) => {
+export const CopyButton = ({
+  text,
+  className,
+  onClick,
+  ...restProps
+}: ButtonProps & { text?: string }) => {
   const [showSuccess, setShowSuccess] = useState(false)
 
   const start = useManualTimeout(() => {
@@ -41,12 +45,12 @@ export const CopyButton = (props: ButtonProps & { text?: string }) => {
 
   return (
     <Button
-      {...omit(props, "text")}
-      className={clsx(props.className, " text-gray")}
+      {...restProps}
+      className={clsx(className, " text-gray")}
       onClick={(e) => {
-        if (!props.text) return
-        navigator.clipboard.writeText(props.text)
-        props.onClick?.(e)
+        if (!text) return
+        navigator.clipboard.writeText(text)
+        onClick?.(e)
         setShowSuccess(true)
         start()
       }}

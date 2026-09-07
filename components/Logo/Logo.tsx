@@ -1,3 +1,5 @@
+import { JSX } from "react"
+
 export type LogoProps = JSX.IntrinsicElements["svg"]
 
 export const Logo = (props: LogoProps) => (

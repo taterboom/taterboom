@@ -5,54 +5,62 @@ export type Project = {
   logo: string
   color: string
   cover?: string
-  archived?: boolean
+  category: string
+  status?: "in-progress"
 }
 
 const ASSETS_PATH = "/assets/projects"
 
 export const PROJECTS: Project[] = [
   {
-    title: "🚧[WIP] KanaNinja",
+    title: "KanaNinja",
+    category: "Language learning",
+    status: "in-progress",
     slug: "https://kananinja.com",
-    desc: "Master Japanese Word by Word.",
-    logo: ASSETS_PATH + "/kananinja-logo.png",
-    cover: ASSETS_PATH + "/kananinja-logo.png",
+    desc: "Build your Japanese vocabulary, one word at a time.",
+    logo: ASSETS_PATH + "/kananinja-dark-logo.png",
     color: "#AFD056",
   },
   {
-    title: "🚧[WIP] Sing Along Nihongo",
+    title: "Sing Along Nihongo",
+    category: "AI · Language learning",
+    status: "in-progress",
     slug: "https://www.bilibili.com/video/BV1Sm411d7gu/?share_source=copy_web&vd_source=5cdbbc0bb09641dbaa07c04b115ecaf8",
-    desc: "Use ChatGPT to read nihongo song lyrics, and you can sing along with it. Powered by ChatGPT and Remotion.",
+    desc: "Learn Japanese through music, with AI-assisted lyrics and sing-along videos.",
     logo: ASSETS_PATH + "/sing-along-nihongo-logo.png",
     cover: ASSETS_PATH + "/sing-along-nihongo-cover.png",
     color: "#B850CC",
   },
   {
     title: "PromptSnippets",
+    category: "Productivity tool",
     slug: "https://promptsnippets.taterboom.com",
-    desc: "Boost your typing with variable snippets.",
+    desc: "Turn reusable prompts into variable snippets. Less repetitive typing, more flow.",
     logo: ASSETS_PATH + "/prompt-snippets-logo-128.png",
     cover: ASSETS_PATH + "/prompt-snippets-cover.png",
     color: "#4752FD",
   },
   {
     title: "AwesomeExport",
+    category: "Figma plugin",
     slug: "https://www.figma.com/community/plugin/1224919959068281380/awesomeexport",
-    desc: "A Figma plugin for enhancing the image exporting.",
+    desc: "A more flexible image export workflow, right inside Figma.",
     logo: ASSETS_PATH + "/awesome-export-logo.png",
     cover: ASSETS_PATH + "/awesome-export-cover.png",
     color: "#FE6C31",
   },
   {
     title: "BabyRun",
+    category: "Indie game",
     slug: "https://taterboom.itch.io/baby-run",
-    desc: "A baby girl learns to run.",
+    desc: "A little girl, her first steps, and a playful adventure.",
     logo: ASSETS_PATH + "/babyrun-logo.png",
     cover: ASSETS_PATH + "/babyrun-cover.png",
     color: "#78DCA9",
   },
   {
     title: "tab-controller",
+    category: "Chrome extension",
     slug: "https://chrome.google.com/webstore/detail/tab-controller/bnampjhjfnfghiclahecmdkbmiebhfbo",
     desc: "A Chrome extension for easy tab movement",
     logo: ASSETS_PATH + "/tab-controller-logo-128.png",
@@ -61,34 +69,20 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "CompositeX",
+    category: "Browser automation",
     slug: "https://compositex.taterboom.com",
-    desc: "A Chrome extension lets you easily build automation workflows",
+    desc: "Build automation workflows for the things you repeat in your browser.",
     logo: ASSETS_PATH + "/compositex-logo-128.png",
     cover: ASSETS_PATH + "/compositex-cover.png",
     color: "#131313",
   },
   {
     title: "ETSAP",
+    category: "Web utility",
     slug: "https://etsap.vercel.app",
-    desc: "Everyone can copy and paste here. Transfer text easily between PC and Mobile.",
+    desc: "A shared clipboard for moving text between your computer and phone.",
     logo: ASSETS_PATH + "/etsap-logo.png",
     color: "#89414F",
   },
-  {
-    archived: true,
-    title: "PDJ",
-    slug: "https://chrome.google.com/webstore/detail/pdj/edgpjjbejcjkgnlnehoballnhokglenj",
-    desc: "A Chrome extension for package.json preview",
-    logo: ASSETS_PATH + "/pdj-logo-128.png",
-    cover: ASSETS_PATH + "/pdj-cover.png",
-    color: "#CD0064",
-  },
-  {
-    title: "RR-Crop",
-    slug: "https://rrcrop.taterboom.com",
-    desc: "Crop pictures into rounded rectangles",
-    logo: ASSETS_PATH + "/rrcrop-logo.png",
-    cover: ASSETS_PATH + "/rrcrop-cover.png",
-    color: "#EA6827",
-  },
 ]
+
