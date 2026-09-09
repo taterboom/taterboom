@@ -1,0 +1,177 @@
+/* Standalone full-viewport stage: it covers the site background rather than scrolling with it. */
+.holo-room {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  color: #dfe6ee;
+  background: radial-gradient(ellipse at 50% 45%, #25282b, #101113 80%);
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
+
+.holo-stage {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 220px);
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+  isolation: isolate;
+}
+
+.holo-card {
+  position: relative;
+  width: min(79vw, 440px, calc(74svh / var(--card-aspect)));
+  max-height: calc(100svh - 250px);
+  max-width: calc((100svh - 250px) / var(--card-aspect));
+  aspect-ratio: 1 / var(--card-aspect);
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transform: rotateX(-5deg) rotateY(-12deg);
+}
+.holo-card:active { cursor: grabbing; }
+.holo-card:focus-visible { outline: 2px solid #d6ef9d; outline-offset: 12px; border-radius: 18px; }
+
+.holo-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 4.5% / 3.2%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 0 0 1px #202329, 0 30px 65px #000b;
+}
+/* The foreground plane is an oversized transparent surface; the card edge is clipped in the shader. */
+.holo-front { transform: translateZ(.2px); overflow: visible; background: transparent; }
+.holo-front canvas {
+  position: absolute;
+  display: block;
+  width: 160%;
+  height: 160%;
+  max-width: none;
+  left: -30%;
+  top: -30%;
+  pointer-events: none;
+}
+.holo-back {
+  visibility: hidden;
+  transform: rotateY(180deg) translateZ(.2px);
+  background: #13216a;
+  overflow: hidden;
+}
+.holo-back img { display: block; width: 100%; height: 100%; object-fit: fill; }
+
+.holo-controls {
+  position: absolute;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(380px, 90vw);
+  display: grid;
+  grid-template-columns: 90px 1fr 48px;
+  column-gap: 9px;
+  row-gap: 24px;
+  align-items: center;
+  padding: 22px 18px;
+  background: #1b1e22e8;
+  border: 1px solid #ffffff18;
+  border-radius: 16px;
+  font-size: 13px;
+}
+.holo-controls input { width: 100%; accent-color: #d6ef9d; }
+.holo-controls output { text-align: right; font-variant-numeric: tabular-nums; }
+
+.holo-depth-track { position: relative; min-width: 0; }
+.holo-depth-track::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  width: 1px;
+  height: 15px;
+  background: #dfe6ee88;
+  pointer-events: none;
+}
+.holo-depth-ticks { display: flex; justify-content: space-between; font-size: 10px; color: #a4acb5; margin-top: 3px; }
+.holo-depth-ticks span:nth-child(2) { position: absolute; left: 50%; transform: translateX(-50%); }
+
+.holo-interaction { grid-column: 1 / -1; display: flex; gap: 8px; margin-top: 2px; }
+.holo-interaction button {
+  flex: 1;
+  min-height: 38px;
+  border: 1px solid #ffffff25;
+  border-radius: 9px;
+  background: #2b3036;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.holo-interaction button[aria-pressed="true"] { background: #d6ef9d; color: #182017; }
+.holo-interaction button:focus-visible { outline: 2px solid #d6ef9d; outline-offset: 2px; }
+.holo-interaction button:disabled { opacity: .6; }
+
+/* The export hides this row so the control panel keeps its tuned height; it reappears only when
+   motion has something to report (a denied permission, a device with no sensors). */
+.holo-hint:empty { display: none; }
+.holo-hint {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #b9c1ca;
+  text-align: center;
+  min-height: 16px;
+}
+
+.holo-status { position: absolute; bottom: 24px; left: 20px; right: 20px; text-align: center; line-height: 1.5; }
+
+.holo-immersive-toggle {
+  position: fixed;
+  z-index: 20;
+  top: calc(16px + env(safe-area-inset-top));
+  right: calc(16px + env(safe-area-inset-right));
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff20;
+  border-radius: 50%;
+  color: #dfe6ee;
+  background: #202429b3;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.holo-immersive-toggle:focus-visible { outline: 2px solid #d6ef9d; outline-offset: 3px; }
+.holo-eye-slash { display: none; }
+
+/* Immersive mode hides the chrome and lets the card fill the viewport. */
+.holo-room.is-immersive .holo-eye-slash { display: block; }
+.holo-room.is-immersive .holo-controls,
+.holo-room.is-immersive .holo-status { display: none; }
+.holo-room.is-immersive .holo-stage { height: 100%; width: 100%; padding: 0; }
+.holo-room.is-immersive .holo-card {
+  width: min(88vw, calc(84svh / var(--card-aspect)));
+  max-width: none;
+  max-height: none;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .holo-stage { width: 60%; height: 100%; padding: 20px; }
+  .holo-card { max-height: 88svh; max-width: calc(88svh / var(--card-aspect)); }
+  .holo-controls {
+    left: auto;
+    right: 12px;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    width: 37%;
+    grid-template-columns: 75px 1fr 40px;
+    padding: 12px;
+    column-gap: 8px;
+    row-gap: 18px;
+    font-size: 11px;
+  }
+}
