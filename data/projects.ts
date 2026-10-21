@@ -13,15 +13,6 @@ const ASSETS_PATH = "/assets/projects"
 
 export const PROJECTS: Project[] = [
   {
-    title: "KanaNinja",
-    category: "Language learning",
-    status: "in-progress",
-    slug: "https://kananinja.com",
-    desc: "Build your Japanese vocabulary, one word at a time.",
-    logo: ASSETS_PATH + "/kananinja-dark-logo.png",
-    color: "#AFD056",
-  },
-  {
     title: "Sing Along Nihongo",
     category: "AI · Language learning",
     status: "in-progress",
